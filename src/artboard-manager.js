@@ -149,9 +149,15 @@ export function ArrangeArtboards(context) {
 
 export function Resize(context){
   console.log("Resize")
-  if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize") {
+  // console.log(context)
+  // console.log(context.actionContext)
+  if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize" || context.action == "ResizeArtboardToFit.finish") {
     if (anArtboardIsSelected(context)) {
       ArrangeArtboards(context)
     }
   }
+}
+
+export function ResizeArtboardToFit(context){
+  Resize(context)
 }

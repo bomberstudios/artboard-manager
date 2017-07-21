@@ -11,7 +11,8 @@
                     "ArtboardChanged.finish": "ArtboardChanged",
                     "LayersMoved.finish": "LayersMoved",
                     "Duplicate.finish": "Duplicate",
-                    "HandlerLostFocus": "Resize"
+                    "HandlerLostFocus": "Resize",
+                    "ResizeArtboardToFit": "ResizeArtboardToFit"
                 }
             }
         },
@@ -45,6 +46,12 @@
             "name" : "Artboard Manager - Resize",
             "handler" : "Resize",
             "identifier" : "artboardmanager.resize"
+        },
+        {
+            "script" : "./artboard-manager.js",
+            "name" : "Artboard Manager - ResizeArtboardToFit",
+            "handler" : "ResizeArtboardToFit",
+            "identifier" : "artboardmanager.ResizeArtboardToFit"
         }
     ],
     "menu": {
