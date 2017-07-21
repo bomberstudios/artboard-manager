@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Artboard Manager</title>
+    <link>https://raw.githubusercontent.com/bomberstudios/artboard-manager/master/.appcast.xml</link>
+    <description>Artboard Manager appcast</description>
+    <language>en</language>
+    <item>
+      <title>Version 1.0.0</title>
+      <enclosure url="https://github.com/bomberstudios/artboard-manager/releases/download/v1.0.0/artboard-manager-v1.0.0.zip" sparkle:version="1.0.0" />
+    </item>
+ </channel>
+</rss>

@@ -1,0 +1,56 @@
+{
+    "compatibleVersion": 3,
+    "bundleVersion": 1,
+    "commands": [
+        {
+            "name": "Artboard Manager",
+            "identifier": "artboardmanager",
+            "script": "./artboard-manager.js",
+            "handlers" : {
+                "actions": {
+                    "ArtboardChanged.finish": "ArtboardChanged",
+                    "LayersMoved.finish": "LayersMoved",
+                    "Duplicate.finish": "Duplicate",
+                    "HandlerLostFocus": "Resize"
+                }
+            }
+        },
+        {
+            "name" : "Artboard Manager",
+            "script" : "./artboard-manager.js",
+            "shortcut": "ctrl alt cmd a",
+            "handler" : "ArrangeArtboards",
+            "identifier" : "artboardmanager.keyboard"
+        },
+        {
+            "script" : "./artboard-manager.js",
+            "name" : "Artboard Manager - ArtboardChanged",
+            "handler" : "ArtboardChanged",
+            "identifier" : "artboardmanager.artboardchanged"
+        },
+        {
+            "script" : "./artboard-manager.js",
+            "name" : "Artboard Manager - LayersMoved",
+            "handler" : "LayersMoved",
+            "identifier" : "artboardmanager.layersmoved"
+        },
+        {
+            "script" : "./artboard-manager.js",
+            "name" : "Artboard Manager - Duplicate",
+            "handler" : "Duplicate",
+            "identifier" : "artboardmanager.duplicate"
+        },
+        {
+            "script" : "./artboard-manager.js",
+            "name" : "Artboard Manager - Resize",
+            "handler" : "Resize",
+            "identifier" : "artboardmanager.resize"
+        }
+    ],
+    "menu": {
+        "title": "Artboard Manager",
+        "items": [
+            "artboardmanager.keyboard"
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "name": "artboard-manager",
+    "version": "1.0.0",
+    "description" : "Because moving artboards manually is *so* 2015.\nNote: this Plugin requires Sketch 3.8 or higher.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "skpm build",
+        "publish": "skpm publish"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bomberstudios/artboard-manager.git"
+    },
+    "keywords": [
+        "sketchplugin"
+    ],
+    "author": "Ale Muñoz",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/bomberstudios/artboard-manager/issues"
+    },
+    "homepage": "https://github.com/bomberstudios/artboard-manager#readme",
+    "engines": {
+        "sketch": ">=3.0"
+    },
+    "devDependencies": {
+        "skpm": "^0.10.2"
+    },
+    "skpm": {
+        "name": "Artboard Manager",
+        "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
+        "authorEmail" : "bomberstudios@gmail.com",
+        "manifest": "src/manifest.json",
+        "main": "artboard-manager.sketchplugin"
+    }
+}

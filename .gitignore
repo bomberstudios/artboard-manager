@@ -1,0 +1,11 @@
+# build artefacts
+artboard-manager.sketchplugin/Contents/Sketch
+artboard-manager.sketchplugin/Contents/Resources/_webpack_images
+
+# npm
+node_modules
+.npm
+npm-debug.log
+
+# mac
+.DS_Store
