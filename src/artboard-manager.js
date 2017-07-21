@@ -3,19 +3,12 @@
 // TODO: treat a group of selected artboards as a whole, and insert them one after the other when dragged over an existing row
 
 // Config
-const RENAME_ARTBOARDS = false
-const ARTBOARD_BASENAMES = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-const SNAPPING_DISTANCE = 400
-const GRID_V_SPACE = 500
-const GRID_H_SPACE = 50
-
 let config = {
-  getKey: function(keyName){
-    if (keyName == "shouldRename") {
-      return RENAME_ARTBOARDS;
-    }
-    return true;
-  }
+  renameArtboards: false,
+  snapDistance: 400,
+  gridHorizontalSpace: 50,
+  gridVerticalSpace: 500,
+  artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 }
 
 const sort_by_x_position = function(a,b){
@@ -88,7 +81,7 @@ export function ArrangeArtboards(context) {
   const layoutX  = layoutBounds.origin.x
   const layoutY = layoutBounds.origin.y
 
-  const numberOfRows = (layoutHeight / GRID_V_SPACE).toFixed()
+  const numberOfRows = (layoutHeight / config.gridVerticalSpace).toFixed()
 
   let currentRow = 0
   let currentRowPosition = layoutY
@@ -99,7 +92,7 @@ export function ArrangeArtboards(context) {
     console.log("Processing row " + currentRow + ", which starts at position: " + (currentRowPosition - layoutY))
     let currentRowArtboards = []
     for (const artboard of Array.from(artboards)) {
-      if(Math.abs(artboard.frame().y() - currentRowPosition) <= SNAPPING_DISTANCE ) {
+      if(Math.abs(artboard.frame().y() - currentRowPosition) <= config.snapDistance ) {
         artboard.frame().y = currentRowPosition
         currentRowArtboards.push(artboard)
       }
@@ -107,7 +100,7 @@ export function ArrangeArtboards(context) {
     if (currentRowArtboards.length > 0) {
       rows.push(currentRowArtboards)
     }
-    currentRowPosition += GRID_V_SPACE
+    currentRowPosition += config.gridVerticalSpace
     currentRow++
   }
 
@@ -122,16 +115,16 @@ export function ArrangeArtboards(context) {
       artboard.frame().y = verticalOffset + layoutY
       tallestArtboard = Math.max(tallestArtboard, artboard.frame().height())
     }
-    verticalOffset += tallestArtboard + (GRID_V_SPACE/2)
+    verticalOffset += tallestArtboard + (config.gridVerticalSpace/2)
 
     // Horizontal positions & name
     let offsetX = 0
     let columnNumber = 1
     for (const artboard of row.sort(sort_by_x_position)) {
       artboard.frame().x = layoutX + offsetX
-      offsetX += artboard.frame().width() + GRID_H_SPACE
-      if (config.getKey('shouldRename')) {
-        artboard.setName(ARTBOARD_BASENAMES[rowNumber] + columnNumber)
+      offsetX += artboard.frame().width() + config.gridHorizontalSpace
+      if (config.renameArtboards) {
+        artboard.setName(config.artboardBasenames[rowNumber] + columnNumber)
       }
       columnNumber++
     }
