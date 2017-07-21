@@ -66,11 +66,11 @@ export function LayersMoved (context) {
   const movedLayers = Array.from(context.actionContext.layers)
   let needToArrange = false
 
-  movedLayers.forEach(function (layer) {
+  for (const layer of movedLayers) {
     if(layer.className() == "MSArtboardGroup") {
       needToArrange = true
     }
-  })
+  }
   if (needToArrange) {
     ArrangeArtboards(context)
   }
@@ -98,12 +98,12 @@ export function ArrangeArtboards(context) {
 
     console.log("Processing row " + currentRow + ", which starts at position: " + (currentRowPosition - layoutY))
     let currentRowArtboards = []
-    Array.from(artboards).forEach(function (artboard) {
+    for (const artboard of Array.from(artboards)) {
       if(Math.abs(artboard.frame().y() - currentRowPosition) <= SNAPPING_DISTANCE ) {
         artboard.frame().y = currentRowPosition
         currentRowArtboards.push(artboard)
       }
-    })
+    }
     if (currentRowArtboards.length > 0) {
       rows.push(currentRowArtboards)
     }
@@ -114,40 +114,40 @@ export function ArrangeArtboards(context) {
   // Now, update positions for all artboards
   let verticalOffset = 0
   let rowNumber = 0
-  rows.forEach(function(row){
+  for (const row of rows) {
 
     // Vertical positions
     let tallestArtboard = 0
-    row.forEach(function(artboard){
+    for (const artboard of row) {
       artboard.frame().y = verticalOffset + layoutY
       tallestArtboard = Math.max(tallestArtboard, artboard.frame().height())
-    })
+    }
     verticalOffset += tallestArtboard + (GRID_V_SPACE/2)
 
     // Horizontal positions & name
     let offsetX = 0
     let columnNumber = 1
-    row.sort(sort_by_x_position).forEach(function(artboard){
+    for (const artboard of row.sort(sort_by_x_position)) {
       artboard.frame().x = layoutX + offsetX
       offsetX += artboard.frame().width() + GRID_H_SPACE
       if (config.getKey('shouldRename')) {
         artboard.setName(ARTBOARD_BASENAMES[rowNumber] + columnNumber)
       }
       columnNumber++
-    })
+    }
     rowNumber++
-  })
+  }
 
   // Update stacking
-  Array.from(artboards).sort(sort_by_x_position).sort(sort_by_y_position).forEach(function(artboard){
+  for (const artboard of Array.from(artboards).sort(sort_by_x_position).sort(sort_by_y_position)) {
     const parent = artboard.parentGroup()
     artboard.removeFromParent()
     parent.insertLayer_atIndex(artboard, 0)
-  })
+  }
   // Restore original selection
-  Array.from(originalSelection).forEach(function(layer){
+  for (const layer of Array.from(originalSelection)) {
     layer.isSelected = true
-  })
+  }
 }
 
 export function Resize(context){
