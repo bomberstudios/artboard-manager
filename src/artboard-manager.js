@@ -60,7 +60,6 @@ export function Duplicate(context) {
 
 export function LayersMoved (context) {
   console.log("LayersMoved")
-  // This event is not called when an artboard is resized or added
   const movedLayers = Array.from(context.actionContext.layers)
   let needToArrange = false
 
@@ -94,7 +93,7 @@ export function ArrangeArtboards(context) {
 
   while (currentRow < numberOfRows) {
 
-    console.log("Processing row " + currentRow + ", which starts at position: " + (currentRowPosition - layoutY))
+    // console.log("Processing row " + currentRow + ", which starts at position: " + (currentRowPosition - layoutY))
     let currentRowArtboards = []
     for (const artboard of Array.from(artboards)) {
       if(Math.abs(artboard.frame().y() - currentRowPosition) <= config.snapDistance ) {
@@ -150,13 +149,9 @@ export function ArrangeArtboards(context) {
 
 export function Resize(context){
   console.log("Resize")
-  console.log(context)
-  console.log(context.api().selectedDocument._object)
-  // console.log(context.api().selectedDocument.selectedLayers.nativeLayers)
-  // console.log(context.api()._object)
-  // if (context.actionContext.name == "NormalResize") {
-  //   if (anArtboardIsSelected(context)) {
-  //     ArrangeArtboards(context)
-  //   }
-  // }
+  if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize") {
+    if (anArtboardIsSelected(context)) {
+      ArrangeArtboards(context)
+    }
+  }
 }
