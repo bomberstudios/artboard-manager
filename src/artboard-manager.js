@@ -36,11 +36,16 @@ export function ArtboardChanged(context) {
 }
 
 const anArtboardIsSelected = function(context){
-  console.log(context.api()._object.document)
-  const selectedLayers = context.api().selectedDocument._object.selectedLayers().layers()
+  console.log("anArtboardIsSelected")
+  // We need a document, let's try some options:
+  const doc = context.document || context.actionContext.document || NSApp.orderedDocuments().firstObject()
+  const selectedLayers = doc.selectedLayers().layers()
+  console.log(selectedLayers)
   if (selectedLayers.count() > 0) {
-    if ( selectedLayers.firstObject().className() == "MSArtboardGroup" ) {
-      return true
+    for (const layer of Array.from(selectedLayers)) {
+      if (layer.className() == "MSArtboardGroup") {
+        return true
+      }
     }
   }
   return false
