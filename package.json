@@ -1,7 +1,7 @@
 {
     "name": "artboard-manager",
-    "version": "1.3.0",
-    "description" : "Because moving artboards manually is *so* 2016.",
+    "version": "1.3.1",
+    "description": "Because moving artboards manually is *so* 2016.",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,7 +30,7 @@
     "skpm": {
         "name": "Artboard Manager",
         "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
-        "authorEmail" : "bomberstudios@gmail.com",
+        "authorEmail": "bomberstudios@gmail.com",
         "manifest": "src/manifest.json",
         "main": "artboard-manager.sketchplugin"
     }
