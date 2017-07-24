@@ -24,5 +24,5 @@ var config = {
 
 ## TODO
 
-- Arrange artboards on artboard deletion
+- Arrange artboards on artboard creation & deletion (right now they’re arranged on move and resize)
 - UI for editing preferences
