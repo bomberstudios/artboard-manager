@@ -1,4 +1,7 @@
 <style media="screen">
+  * {
+    font: 400 13px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
   fieldset {
     border: none;
   }
@@ -9,21 +12,32 @@
     text-align: right;
   }
 </style>
-<form class="" action="index.html" method="post">
+<script type="text/javascript">
+  // Populate form values
+  function populateFormValues(defaults){
+    document.getElementById("renameArtboards").checked = defaults.renameArtboards;
+    document.getElementById("snapDistance").value = defaults.snapDistance;
+    document.getElementById("gridHorizontalSpace").value = defaults.gridHorizontalSpace;
+    document.getElementById("gridVerticalSpace").value = defaults.gridVerticalSpace;
+  }
+  // On change form, store new defaults
+  // TODO: Add basenames
+</script>
+<form id="form">
   <fieldset>
     <input class="right" type="checkbox" id="renameArtboards" />
     <label for="renameArtboards">Rename Artboards</label>
   </fieldset>
   <fieldset>
     <label class="right" for="snapDistance">snapDistance</label>
-    <input type="text" id="snapDistance" value="400" />
+    <input type="text" id="snapDistance" value="0" />
   </fieldset>
   <fieldset>
     <label class="right" for="gridHorizontalSpace">gridHorizontalSpace</label>
-    <input type="text" id="gridHorizontalSpace" value="50" />
+    <input type="text" id="gridHorizontalSpace" value="0" />
   </fieldset>
   <fieldset>
     <label class="right" for="gridVerticalSpace">gridVerticalSpace</label>
-    <input type="text" id="gridVerticalSpace" value="500" />
+    <input type="text" id="gridVerticalSpace" value="0" />
   </fieldset>
 </form>

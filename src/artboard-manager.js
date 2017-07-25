@@ -3,7 +3,7 @@ import WebUI from 'sketch-module-web-view'
 // Config
 let config = {
   renameArtboards: false,
-  snapDistance: 400,
+  snapDistance: 300,
   gridHorizontalSpace: 50,
   gridVerticalSpace: 500,
   artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -163,6 +163,7 @@ export function ResizeArtboardToFit(context){
 export function ShowPreferences(context){
   const options = {
     identifier: 'com.bomberstudios.sketchplugins.artboard-manager',
+    // styleMask: (NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask),
     x: 0,
     y: 0,
     width: 500,
@@ -173,10 +174,12 @@ export function ShowPreferences(context){
     hideTitleBar: false,
     shouldKeepAround: true, // default: true, set to false to make Sketch crash 😬
     frameLoadDelegate: {
-      // 'webView:didFinishLoadForFrame:': function (webView, webFrame) {
-      //   context.document.showMessage('UI loaded!')
-      //   WebUI.clear()
-      // }
+      'webView:didFinishLoadForFrame:': function (webView, webFrame) {
+        // context.document.showMessage('UI loaded!')
+        // WebUI.clear()
+        const configString = JSON.stringify(config)
+        preferencesUI.eval(`populateFormValues(${configString})`)
+      }
       // This doesn't seem to be triggered when closing, but on load…?
       // "webView:willCloseFrame:": function(webView, webFrame){
       //   console.log("Preferences window will close")
@@ -184,5 +187,5 @@ export function ShowPreferences(context){
     },
     uiDelegate: {}
   }
-  const webUI = new WebUI(context, 'artboard-manager.html', options)
+  const preferencesUI = new WebUI(context, 'artboard-manager.html', options)
 }
