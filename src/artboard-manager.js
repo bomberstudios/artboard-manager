@@ -1,6 +1,4 @@
-// TODO: Setup arboard naming scheme using a RegEx?
-// TODO: Add a settings panel (or read settings from a sketchsettings.json file)
-// TODO: treat a group of selected artboards as a whole, and insert them one after the other when dragged over an existing row
+import WebUI from 'sketch-module-web-view'
 
 // Config
 let config = {
@@ -160,4 +158,31 @@ export function Resize(context){
 
 export function ResizeArtboardToFit(context){
   Resize(context)
+}
+
+export function ShowPreferences(context){
+  const options = {
+    identifier: 'com.bomberstudios.sketchplugins.artboard-manager',
+    x: 0,
+    y: 0,
+    width: 500,
+    height: 200,
+    background: NSColor.whiteColor(),
+    onlyShowCloseButton: false,
+    title: 'Artboard Manager — Settings',
+    hideTitleBar: false,
+    shouldKeepAround: true, // default: true, set to false to make Sketch crash 😬
+    frameLoadDelegate: {
+      // 'webView:didFinishLoadForFrame:': function (webView, webFrame) {
+      //   context.document.showMessage('UI loaded!')
+      //   WebUI.clear()
+      // }
+      // This doesn't seem to be triggered when closing, but on load…?
+      // "webView:willCloseFrame:": function(webView, webFrame){
+      //   console.log("Preferences window will close")
+      // }
+    },
+    uiDelegate: {}
+  }
+  const webUI = new WebUI(context, 'artboard-manager.html', options)
 }

@@ -24,40 +24,17 @@
             "identifier" : "artboardmanager.keyboard"
         },
         {
+            "name" : "Show Preferences",
             "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - ArtboardChanged",
-            "handler" : "ArtboardChanged",
-            "identifier" : "artboardmanager.artboardchanged"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - LayersMoved",
-            "handler" : "LayersMoved",
-            "identifier" : "artboardmanager.layersmoved"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - Duplicate",
-            "handler" : "Duplicate",
-            "identifier" : "artboardmanager.duplicate"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - Resize",
-            "handler" : "Resize",
-            "identifier" : "artboardmanager.resize"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - ResizeArtboardToFit",
-            "handler" : "ResizeArtboardToFit",
-            "identifier" : "artboardmanager.ResizeArtboardToFit"
+            "handler" : "ShowPreferences",
+            "identifier" : "artboardmanager.preferences"
         }
     ],
     "menu": {
         "title": "Artboard Manager",
         "items": [
-            "artboardmanager.keyboard"
+            "artboardmanager.keyboard",
+            "artboardmanager.preferences"
         ]
     }
 }
