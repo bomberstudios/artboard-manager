@@ -6,6 +6,16 @@ This plugin automatically arranges the position of all Artboards in your Sketch 
 
 It’s still a work in progress (for one, it doesn’t even have an easy way to change the config…) but it’ll get better 🤞.
 
+## Installation
+
+- Visit the page for [the latest release](https://github.com/bomberstudios/artboard-manager/releases/latest) and click the link named "To install: download this file, unzip and double click on the .sketchplugin"
+
+## Usage
+
+Once the plugin is installed, Artboards will be arranged automatically when moved or resized.
+
+If, for some reason, you want to arrange your Artboards manually, you can choose the Artboard Manager › Arrange Artboards menu option.
+
 ## Configuration
 
 You can tweak some of the settings by searching for this bit of code and editing it:
