@@ -1,12 +1,20 @@
+'use strict';
+
 import WebUI from 'sketch-module-web-view'
 
 // Config
-let config = {
-  renameArtboards: false,
-  snapDistance: 300,
-  gridHorizontalSpace: 50,
-  gridVerticalSpace: 500,
-  artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+const defaults = NSUserDefaults.standardUserDefaults()
+
+let config = reloadConfig()
+
+function reloadConfig(){
+  return {
+    renameArtboards:    Boolean(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.renameArtboards")) || false,
+    snapDistance:        Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.snapDistance")) || 300,
+    gridHorizontalSpace: Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.gridHorizontalSpace")) || 50,
+    gridVerticalSpace:   Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.gridVerticalSpace")) || 500,
+    artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  }
 }
 
 const sort_by_x_position = function(a,b){
@@ -160,6 +168,15 @@ export function ResizeArtboardToFit(context){
   Resize(context)
 }
 
+function storePreferences(obj){
+  console.log("Storing preferences")
+  defaults.setObject_forKey(obj.renameArtboards,"com.bomberstudios.sketchplugins.artboard-manager.renameArtboards")
+  defaults.setObject_forKey(obj.snapDistance,"com.bomberstudios.sketchplugins.artboard-manager.snapDistance")
+  defaults.setObject_forKey(obj.gridVerticalSpace,"com.bomberstudios.sketchplugins.artboard-manager.gridVerticalSpace")
+  defaults.setObject_forKey(obj.gridHorizontalSpace,"com.bomberstudios.sketchplugins.artboard-manager.gridHorizontalSpace")
+  config = reloadConfig()
+}
+
 export function ShowPreferences(context){
   const options = {
     identifier: 'com.bomberstudios.sketchplugins.artboard-manager',
@@ -186,6 +203,12 @@ export function ShowPreferences(context){
       // }
     },
     uiDelegate: {}
+    uiDelegate: {},
+    handlers: {
+      storePreferences: function(obj){
+        storePreferences(obj);
+      }
+    }
   }
   const preferencesUI = new WebUI(context, 'artboard-manager.html', options)
 }

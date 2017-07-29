@@ -2,6 +2,20 @@
   * {
     font: 400 13px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  html {
+    position: fixed;
+    height  : 100%;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
   fieldset {
     border: none;
   }
@@ -14,11 +28,34 @@
 </style>
 <script type="text/javascript">
   // Populate form values
+  // import pluginCall from 'sketch-module-web-view/client'
+  function pluginCall(actionName) {
+    if (!actionName) {
+      throw new Error('missing action name')
+    }
+    var args = [].slice.call(arguments).slice(1)
+    var previousHash = (window.location.hash.split('?')[1] ? window.location.hash.split('?')[0] : window.location.hash)
+    window.location.hash = previousHash +
+    '?pluginAction=' + encodeURIComponent(actionName) +
+    '&actionId=' + Date.now() +
+    '&pluginArgs=' + encodeURIComponent(JSON.stringify(args))
+    return
+  }
+
   function populateFormValues(defaults){
     document.getElementById("renameArtboards").checked = defaults.renameArtboards;
     document.getElementById("snapDistance").value = defaults.snapDistance;
     document.getElementById("gridHorizontalSpace").value = defaults.gridHorizontalSpace;
     document.getElementById("gridVerticalSpace").value = defaults.gridVerticalSpace;
+    document.getElementById("saveButton").addEventListener('click', function(){
+      var config = {
+        renameArtboards: document.getElementById("renameArtboards").checked,
+        snapDistance: document.getElementById("snapDistance").value,
+        gridHorizontalSpace: document.getElementById("gridHorizontalSpace").value,
+        gridVerticalSpace: document.getElementById("gridVerticalSpace").value
+      }
+      pluginCall('storePreferences', config);
+    })
   }
   // On change form, store new defaults
   // TODO: Add basenames
@@ -39,5 +76,8 @@
   <fieldset>
     <label class="right" for="gridVerticalSpace">gridVerticalSpace</label>
     <input type="text" id="gridVerticalSpace" value="0" />
+  </fieldset>
+  <fieldset>
+    <button type="button" id="saveButton">Save Settings</button>
   </fieldset>
 </form>
