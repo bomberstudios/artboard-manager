@@ -42,20 +42,25 @@
     return
   }
 
-  function populateFormValues(defaults){
-    document.getElementById("renameArtboards").checked = defaults.renameArtboards;
-    document.getElementById("snapDistance").value = defaults.snapDistance;
-    document.getElementById("gridHorizontalSpace").value = defaults.gridHorizontalSpace;
-    document.getElementById("gridVerticalSpace").value = defaults.gridVerticalSpace;
-    document.getElementById("saveButton").addEventListener('click', function(){
-      var config = {
-        renameArtboards: document.getElementById("renameArtboards").checked,
-        snapDistance: document.getElementById("snapDistance").value,
-        gridHorizontalSpace: document.getElementById("gridHorizontalSpace").value,
-        gridVerticalSpace: document.getElementById("gridVerticalSpace").value
-      }
-      pluginCall('storePreferences', config);
+  function serializeForm(){
+    pluginCall('storePreferences', {
+      renameArtboards: document.getElementById("renameArtboards").checked,
+      snapDistance: document.getElementById("snapDistance").value,
+      gridHorizontalSpace: document.getElementById("gridHorizontalSpace").value,
+      gridVerticalSpace: document.getElementById("gridVerticalSpace").value
     })
+  }
+  function populateFormValues(defaults){
+    document.getElementById("renameArtboards").checked = defaults.renameArtboards
+    document.getElementById("snapDistance").value = defaults.snapDistance
+    document.getElementById("gridHorizontalSpace").value = defaults.gridHorizontalSpace
+    document.getElementById("gridVerticalSpace").value = defaults.gridVerticalSpace
+
+    document.getElementById("renameArtboards").addEventListener('click', serializeForm)
+    document.getElementById("snapDistance").addEventListener('change', serializeForm)
+    document.getElementById("gridHorizontalSpace").addEventListener('change', serializeForm)
+    document.getElementById("gridVerticalSpace").addEventListener('change', serializeForm)
+    // document.getElementById("saveButton").addEventListener('click', serializeForm)
   }
   // On change form, store new defaults
   // TODO: Add basenames
@@ -77,7 +82,7 @@
     <label class="right" for="gridVerticalSpace">gridVerticalSpace</label>
     <input type="text" id="gridVerticalSpace" value="0" />
   </fieldset>
-  <fieldset>
+  <!-- <fieldset>
     <button type="button" id="saveButton">Save Settings</button>
-  </fieldset>
+  </fieldset> -->
 </form>

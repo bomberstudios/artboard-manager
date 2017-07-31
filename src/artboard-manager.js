@@ -9,10 +9,10 @@ let config = reloadConfig()
 
 function reloadConfig(){
   return {
-    renameArtboards:    Boolean(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.renameArtboards")) || false,
-    snapDistance:        Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.snapDistance")) || 300,
+    renameArtboards: Boolean(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.renameArtboards")) || false,
+    snapDistance: Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.snapDistance")) || 300,
     gridHorizontalSpace: Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.gridHorizontalSpace")) || 50,
-    gridVerticalSpace:   Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.gridVerticalSpace")) || 500,
+    gridVerticalSpace: Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.gridVerticalSpace")) || 500,
     artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   }
 }
@@ -81,12 +81,15 @@ export function LayersMoved (context) {
 
 export function ArrangeArtboards(context) {
   console.log("ArrangeArtboards")
-  const doc = MSDocument.currentDocument()
+  const doc = context.document || MSDocument.currentDocument()
   const originalSelection = doc.selectedLayers()
+  // Running the plugin from the menu also arranges symbol masters,
+  // because we don't filter by type inside this function, and
+  // `page.artboards()` gives us `MSSymbolMaster`
   const artboards = doc.currentPage().artboards()
 
   const layoutBounds = MSLayerGroup.groupBoundsForContainer(MSLayerArray.arrayWithLayers(artboards))
-  const layoutWidth  = layoutBounds.size.width
+  // const layoutWidth  = layoutBounds.size.width
   const layoutHeight = layoutBounds.size.height
   const layoutX  = layoutBounds.origin.x
   const layoutY = layoutBounds.origin.y
@@ -181,28 +184,19 @@ export function ShowPreferences(context){
   const options = {
     identifier: 'com.bomberstudios.sketchplugins.artboard-manager',
     // styleMask: (NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask),
-    x: 0,
-    y: 0,
     width: 500,
     height: 200,
     background: NSColor.whiteColor(),
-    onlyShowCloseButton: false,
+    // onlyShowCloseButton: false,
     title: 'Artboard Manager — Settings',
-    hideTitleBar: false,
-    shouldKeepAround: true, // default: true, set to false to make Sketch crash 😬
+    // hideTitleBar: true,
+    // styleMask: (NSFullSizeContentViewWindowMask | NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask),
     frameLoadDelegate: {
       'webView:didFinishLoadForFrame:': function (webView, webFrame) {
-        // context.document.showMessage('UI loaded!')
-        // WebUI.clear()
         const configString = JSON.stringify(config)
         preferencesUI.eval(`populateFormValues(${configString})`)
       }
-      // This doesn't seem to be triggered when closing, but on load…?
-      // "webView:willCloseFrame:": function(webView, webFrame){
-      //   console.log("Preferences window will close")
-      // }
     },
-    uiDelegate: {}
     uiDelegate: {},
     handlers: {
       storePreferences: function(obj){
