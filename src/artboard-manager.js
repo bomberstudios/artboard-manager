@@ -4,6 +4,7 @@ let config = {
   snapDistance: 400,
   gridHorizontalSpace: 50,
   gridVerticalSpace: 500,
+  arrangeOnAdd: false,
   artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 }
 
@@ -146,14 +147,23 @@ export function ArrangeArtboards(context) {
 export function Resize(context){
   console.log("Resize")
   // console.log(context)
-  // console.log(context.actionContext)
+  console.log(context.actionContext)
+  // "Normal" — User selected the Artboard tool to add an Artboard 🤔
   if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize" || context.action == "ResizeArtboardToFit.finish") {
     if (anArtboardIsSelected(context)) {
       ArrangeArtboards(context)
     }
   }
+  if (context.actionContext.name == "InsertArtboard" && config.arrangeOnAdd) {
+    ArrangeArtboards(context)
+  }
 }
 
 export function ResizeArtboardToFit(context){
+  console.log("ResizeArtboardToFit")
   Resize(context)
+}
+
+export function InsertArtboard(context){
+  console.log('InsertArtboard');
 }
