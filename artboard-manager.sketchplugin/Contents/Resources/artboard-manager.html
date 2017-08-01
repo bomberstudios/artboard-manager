@@ -44,6 +44,7 @@
 
   function serializeForm(){
     pluginCall('storePreferences', {
+      arrangeOnAdd: document.getElementById("arrangeOnAdd").checked,
       renameArtboards: document.getElementById("renameArtboards").checked,
       snapDistance: document.getElementById("snapDistance").value,
       gridHorizontalSpace: document.getElementById("gridHorizontalSpace").value,
@@ -51,21 +52,25 @@
     })
   }
   function populateFormValues(defaults){
+    document.getElementById("arrangeOnAdd").checked = defaults.arrangeOnAdd
     document.getElementById("renameArtboards").checked = defaults.renameArtboards
     document.getElementById("snapDistance").value = defaults.snapDistance
     document.getElementById("gridHorizontalSpace").value = defaults.gridHorizontalSpace
     document.getElementById("gridVerticalSpace").value = defaults.gridVerticalSpace
 
+    document.getElementById("arrangeOnAdd").addEventListener('click', serializeForm)
     document.getElementById("renameArtboards").addEventListener('click', serializeForm)
     document.getElementById("snapDistance").addEventListener('change', serializeForm)
     document.getElementById("gridHorizontalSpace").addEventListener('change', serializeForm)
     document.getElementById("gridVerticalSpace").addEventListener('change', serializeForm)
     // document.getElementById("saveButton").addEventListener('click', serializeForm)
   }
-  // On change form, store new defaults
-  // TODO: Add basenames
 </script>
 <form id="form">
+  <fieldset>
+    <input class="right" type="checkbox" id="arrangeOnAdd" />
+    <label for="arrangeOnAdd">Arrange Artboards on add</label>
+  </fieldset>
   <fieldset>
     <input class="right" type="checkbox" id="renameArtboards" />
     <label for="renameArtboards">Rename Artboards</label>

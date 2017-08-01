@@ -12,7 +12,8 @@
                     "LayersMoved.finish": "LayersMoved",
                     "Duplicate.finish": "Duplicate",
                     "HandlerLostFocus": "Resize",
-                    "ResizeArtboardToFit": "ResizeArtboardToFit"
+                    "ResizeArtboardToFit": "ResizeArtboardToFit",
+                    "InsertArtboard.finish": "InsertArtboard"
                 }
             }
         },

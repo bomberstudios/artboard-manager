@@ -3,12 +3,13 @@
 import WebUI from 'sketch-module-web-view'
 
 // Config
-const defaults = NSUserDefaults.standardUserDefaults()
-
 let config = reloadConfig()
 
 function reloadConfig(){
+  console.log('reloadConfig')
+  const defaults = NSUserDefaults.standardUserDefaults()
   return {
+    arrangeOnAdd: Boolean(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.arrangeOnAdd")) || false,
     renameArtboards: Boolean(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.renameArtboards")) || false,
     snapDistance: Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.snapDistance")) || 300,
     gridHorizontalSpace: Number(defaults.objectForKey("com.bomberstudios.sketchplugins.artboard-manager.gridHorizontalSpace")) || 50,
@@ -159,20 +160,27 @@ export function ArrangeArtboards(context) {
 export function Resize(context){
   console.log("Resize")
   // console.log(context)
-  // console.log(context.actionContext)
+  console.log(context.actionContext)
+  // "Normal" — User selected the Artboard tool to add an Artboard 🤔
   if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize" || context.action == "ResizeArtboardToFit.finish") {
     if (anArtboardIsSelected(context)) {
       ArrangeArtboards(context)
     }
   }
+  if (context.actionContext.name == "InsertArtboard" && config.arrangeOnAdd) {
+    ArrangeArtboards(context)
+  }
 }
 
 export function ResizeArtboardToFit(context){
+  console.log("ResizeArtboardToFit")
   Resize(context)
 }
 
 function storePreferences(obj){
   console.log("Storing preferences")
+  const defaults = NSUserDefaults.standardUserDefaults()
+  defaults.setObject_forKey(obj.arrangeOnAdd,"com.bomberstudios.sketchplugins.artboard-manager.arrangeOnAdd")
   defaults.setObject_forKey(obj.renameArtboards,"com.bomberstudios.sketchplugins.artboard-manager.renameArtboards")
   defaults.setObject_forKey(obj.snapDistance,"com.bomberstudios.sketchplugins.artboard-manager.snapDistance")
   defaults.setObject_forKey(obj.gridVerticalSpace,"com.bomberstudios.sketchplugins.artboard-manager.gridVerticalSpace")
@@ -185,8 +193,8 @@ export function ShowPreferences(context){
     identifier: 'com.bomberstudios.sketchplugins.artboard-manager',
     // styleMask: (NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask),
     width: 500,
-    height: 200,
-    background: NSColor.whiteColor(),
+    height: 250,
+    // background: NSColor.whiteColor(),
     // onlyShowCloseButton: false,
     title: 'Artboard Manager — Settings',
     // hideTitleBar: true,
@@ -205,4 +213,8 @@ export function ShowPreferences(context){
     }
   }
   const preferencesUI = new WebUI(context, 'artboard-manager.html', options)
+}
+
+export function InsertArtboard(context){
+  console.log('InsertArtboard');
 }
