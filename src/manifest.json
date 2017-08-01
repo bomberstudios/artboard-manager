@@ -22,36 +22,6 @@
             "shortcut": "ctrl alt cmd a",
             "handler" : "ArrangeArtboards",
             "identifier" : "artboardmanager.keyboard"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - ArtboardChanged",
-            "handler" : "ArtboardChanged",
-            "identifier" : "artboardmanager.artboardchanged"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - LayersMoved",
-            "handler" : "LayersMoved",
-            "identifier" : "artboardmanager.layersmoved"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - Duplicate",
-            "handler" : "Duplicate",
-            "identifier" : "artboardmanager.duplicate"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - Resize",
-            "handler" : "Resize",
-            "identifier" : "artboardmanager.resize"
-        },
-        {
-            "script" : "./artboard-manager.js",
-            "name" : "Artboard Manager - ResizeArtboardToFit",
-            "handler" : "ResizeArtboardToFit",
-            "identifier" : "artboardmanager.ResizeArtboardToFit"
         }
     ],
     "menu": {

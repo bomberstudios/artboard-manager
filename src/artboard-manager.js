@@ -1,7 +1,3 @@
-// TODO: Setup arboard naming scheme using a RegEx?
-// TODO: Add a settings panel (or read settings from a sketchsettings.json file)
-// TODO: treat a group of selected artboards as a whole, and insert them one after the other when dragged over an existing row
-
 // Config
 let config = {
   renameArtboards: false,
