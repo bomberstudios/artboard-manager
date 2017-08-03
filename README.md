@@ -4,7 +4,7 @@ This plugin automatically arranges the position of all Artboards in your Sketch 
 
 ![](https://user-images.githubusercontent.com/3832/28533105-3a1586ca-709c-11e7-8544-87d2bb0ad4f1.gif)
 
-It’s still a work in progress (for one, it doesn’t even have an easy way to change the config…) but it’ll get better 🤞.
+It’s still a work in progress (the plugin is optimised for iPhone-sized Artboards, and it doesn’t even have an easy way to change the config…) but it’ll get better 🤞.
 
 ## Installation
 
@@ -36,3 +36,5 @@ var config = {
 
 - Arrange artboards on artboard creation & deletion (right now they’re arranged on move and resize)
 - UI for editing preferences
+- Ability to enable the plugin per document / page
+- Ability to rename Artboards automatically based on multiple criteria
