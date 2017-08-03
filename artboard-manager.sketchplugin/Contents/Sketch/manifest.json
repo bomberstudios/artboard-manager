@@ -1,0 +1,41 @@
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Artboard Manager",
+      "identifier": "artboardmanager",
+      "script": "artboard-manager.js",
+      "handlers": {
+        "actions": {
+          "ArtboardChanged.finish": "ArtboardChanged",
+          "LayersMoved.finish": "LayersMoved",
+          "Duplicate.finish": "Duplicate",
+          "HandlerLostFocus": "Resize",
+          "ResizeArtboardToFit": "ResizeArtboardToFit",
+          "InsertArtboard.finish": "InsertArtboard"
+        }
+      }
+    },
+    {
+      "name": "Arrange Artboards",
+      "script": "artboard-manager.js",
+      "shortcut": "ctrl alt cmd a",
+      "handler": "ArrangeArtboards",
+      "identifier": "artboardmanager.keyboard"
+    }
+  ],
+  "menu": {
+    "title": "Artboard Manager",
+    "items": [
+      "artboardmanager.keyboard"
+    ]
+  },
+  "version": "1.4.0",
+  "description": "Because moving artboards manually is *so* 2016.",
+  "homepage": "https://github.com/bomberstudios/artboard-manager#readme",
+  "name": "Artboard Manager",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com/bomberstudios/artboard-manager/master/.appcast.xml",
+  "author": "Ale Muñoz"
+}
