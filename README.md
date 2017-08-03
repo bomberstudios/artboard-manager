@@ -8,7 +8,7 @@ It’s still a work in progress (for one, it doesn’t even have an easy way to 
 
 ## Installation
 
-- Visit the page for [the latest release](https://github.com/bomberstudios/artboard-manager/releases/latest) and click the link named "To install: download this file, unzip and double click on the .sketchplugin"
+- [Download the latest release](https://github.com/bomberstudios/artboard-manager/releases/download/v1.4.0/artboard-manager.sketchplugin.zip), unzip and double click on the .sketchplugin file.
 
 ## Usage
 
