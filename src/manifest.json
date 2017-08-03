@@ -1,4 +1,5 @@
 {
+    "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
     "compatibleVersion": 3,
     "bundleVersion": 1,
     "commands": [
