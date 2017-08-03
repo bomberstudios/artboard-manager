@@ -1,6 +1,6 @@
 {
     "name": "artboard-manager",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "Because moving artboards manually is *so* 2016.",
     "main": "index.js",
     "scripts": {
