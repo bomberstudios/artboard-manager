@@ -32,7 +32,7 @@
       "artboardmanager.keyboard"
     ]
   },
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Because moving artboards manually is *so* 2016.",
   "homepage": "https://github.com/bomberstudios/artboard-manager#readme",
   "name": "Artboard Manager",
