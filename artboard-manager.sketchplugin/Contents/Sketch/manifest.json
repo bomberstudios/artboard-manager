@@ -24,15 +24,23 @@
       "shortcut": "ctrl alt cmd a",
       "handler": "ArrangeArtboards",
       "identifier": "artboardmanager.keyboard"
+    },
+    {
+      "name": "Settings",
+      "script": "artboard-settings.js",
+      "handler": "ArtboardSettings",
+      "identifier": "artboardmanager.settings"
     }
   ],
   "menu": {
     "title": "Artboard Manager",
     "items": [
-      "artboardmanager.keyboard"
+      "artboardmanager.keyboard",
+      "-",
+      "artboardmanager.settings"
     ]
   },
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Because moving artboards manually is *so* 2016.",
   "homepage": "https://github.com/bomberstudios/artboard-manager#readme",
   "name": "Artboard Manager",
