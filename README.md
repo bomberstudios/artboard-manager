@@ -8,7 +8,7 @@ It’s still a work in progress (the plugin is optimised for iPhone-sized Artboa
 
 ## Installation
 
-- [Download the latest release](https://github.com/bomberstudios/artboard-manager/releases/download/v1.4.1/artboard-manager.sketchplugin.zip), unzip and double click on the .sketchplugin file.
+- [Download the latest release](https://github.com/bomberstudios/artboard-manager/releases/latest), unzip and double click on the .sketchplugin file.
 
 ## Usage
 
