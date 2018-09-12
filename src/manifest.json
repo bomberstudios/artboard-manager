@@ -1,35 +1,39 @@
 {
-    "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
-    "compatibleVersion": 3,
-    "bundleVersion": 1,
-    "commands": [
-        {
-            "name": "Artboard Manager",
-            "identifier": "artboardmanager",
-            "script": "./artboard-manager.js",
-            "handlers" : {
-                "actions": {
-                    "ArtboardChanged.finish": "ArtboardChanged",
-                    "LayersMoved.finish": "LayersMoved",
-                    "Duplicate.finish": "Duplicate",
-                    "HandlerLostFocus": "Resize",
-                    "ResizeArtboardToFit": "ResizeArtboardToFit",
-                    "InsertArtboard.finish": "InsertArtboard"
-                }
-            }
-        },
-        {
-            "name" : "Arrange Artboards",
-            "script" : "./artboard-manager.js",
-            "shortcut": "ctrl alt cmd a",
-            "handler" : "ArrangeArtboards",
-            "identifier" : "artboardmanager.keyboard"
+  "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Artboard Manager",
+      "identifier": "artboardmanager",
+      "script": "./artboard-manager.js",
+      "handlers": {
+        "actions": {
+          "ArtboardChanged.finish": "ArtboardChanged",
+          "LayersMoved.finish": "LayersMoved",
+          "Duplicate.finish": "Duplicate",
+          "HandlerLostFocus": "Resize",
+          "ResizeArtboardToFit": "ResizeArtboardToFit",
+          "InsertArtboard.finish": "InsertArtboard"
         }
-    ],
-    "menu": {
-        "title": "Artboard Manager",
-        "items": [
-            "artboardmanager.keyboard"
-        ]
+      }
+    },
+    {
+      "name": "Arrange Artboards",
+      "script": "./artboard-manager.js",
+      "shortcut": "ctrl alt cmd a",
+      "handler": "ArrangeArtboards",
+      "identifier": "artboardmanager.keyboard"
+    },
+    {
+      "name": "Settings",
+      "script": "./artboard-settings.js",
+      "handler": "ArtboardSettings",
+      "identifier": "artboardmanager.settings"
     }
+  ],
+  "menu": {
+    "title": "Artboard Manager",
+    "items": ["artboardmanager.keyboard", "-", "artboardmanager.settings"]
+  }
 }

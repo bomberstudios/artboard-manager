@@ -1,0 +1,73 @@
+html {
+  box-sizing: border-box;
+  background: transparent;
+
+  /* Prevent the page to be scrollable */
+  overflow: hidden;
+
+  /* Force the default cursor, even on text */
+  cursor: default;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  /* Prevent the content from being selectionable */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body {
+  font-size: 13px;
+  color: #242424;
+  letter-spacing: -0.08px;
+  font-family: -apple-system;
+}
+
+input,
+textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+.wrapper {
+  padding: 16px;
+}
+label {
+  display: block;
+  padding-bottom: 12px;
+}
+
+label span {
+  text-align: right;
+  width: 143px;
+  padding-right: 4px;
+  display: inline-block;
+}
+
+input[type="number"] {
+  width: 60px;
+}
+
+footer {
+  padding-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background-color: transparent;
+  background-image: linear-gradient(-180deg, #6cb3fa 0%, #067dff 100%);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15);
+  border-radius: 3.5px;
+  color: #fff;
+  border: none;
+  width: 67px;
+  height: 20px;
+  line-height: 20px;
+}

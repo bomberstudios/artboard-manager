@@ -1,12 +1,7 @@
+import { getDefaultSettings } from "./artboard-settings.js"
+
 // Config
-let config = {
-  renameArtboards: false,
-  snapDistance: 400,
-  gridHorizontalSpace: 50,
-  gridVerticalSpace: 500,
-  arrangeOnAdd: false,
-  artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-}
+let config = getDefaultSettings()
 
 const sort_by_x_position = function(a,b){
   return a.frame().left() - b.frame().left();
