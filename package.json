@@ -1,38 +1,47 @@
 {
-    "name": "artboard-manager",
-    "description": "Because moving artboards manually is *so* 2016.",
-    "version": "1.4.3",
-    "main": "index.js",
-    "scripts": {
-        "build": "skpm-build",
-        "watch": "skpm-build --watch",
-        "start": "skpm-build --watch --run",
-        "postinstall": "npm run build && skpm-link"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/bomberstudios/artboard-manager.git"
-    },
-    "keywords": [
-        "sketchplugin"
-    ],
-    "author": "Ale Muñoz",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/bomberstudios/artboard-manager/issues"
-    },
-    "homepage": "https://github.com/bomberstudios/artboard-manager#readme",
-    "engines": {
-        "sketch": ">=3.0"
-    },
-    "devDependencies": {
-        "@skpm/builder": "^0.5.2"
-    },
-    "skpm": {
-        "name": "Artboard Manager",
-        "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
-        "authorEmail": "bomberstudios@gmail.com",
-        "manifest": "src/manifest.json",
-        "main": "artboard-manager.sketchplugin"
-    }
+  "name": "artboard-manager",
+  "description": "Because moving artboards manually is *so* 2016.",
+  "version": "1.4.3",
+  "main": "index.js",
+  "scripts": {
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch --run",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bomberstudios/artboard-manager.git"
+  },
+  "keywords": [
+    "sketchplugin"
+  ],
+  "author": "Ale Muñoz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bomberstudios/artboard-manager/issues"
+  },
+  "homepage": "https://github.com/bomberstudios/artboard-manager#readme",
+  "engines": {
+    "sketch": ">=3.0"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.5.2",
+    "@skpm/extract-loader": "^2.0.2",
+    "css-loader": "^1.0.0",
+    "html-loader": "^0.5.5"
+  },
+  "skpm": {
+    "name": "Artboard Manager",
+    "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
+    "authorEmail": "bomberstudios@gmail.com",
+    "manifest": "src/manifest.json",
+    "main": "artboard-manager.sketchplugin"
+  },
+  "dependencies": {
+    "sketch-module-web-view": "^1.2.3"
+  },
+  "resources": [
+    "resources/**/*.js"
+  ]
 }
