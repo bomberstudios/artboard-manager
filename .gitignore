@@ -1,6 +1,5 @@
 # build artefacts
-# artboard-manager.sketchplugin/Contents/Sketch
-# artboard-manager.sketchplugin/Contents/Resources/_webpack_images
+artboard-manager.sketchplugin/Contents
 
 # npm
 node_modules
