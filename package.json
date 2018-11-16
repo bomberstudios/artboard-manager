@@ -26,9 +26,9 @@
     "sketch": ">=3.0"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.5.2",
+    "@skpm/builder": "^0.5.11",
     "@skpm/extract-loader": "^2.0.2",
-    "css-loader": "^1.0.0",
+    "css-loader": "^1.0.1",
     "html-loader": "^0.5.5"
   },
   "skpm": {
@@ -39,7 +39,7 @@
     "main": "artboard-manager.sketchplugin"
   },
   "dependencies": {
-    "sketch-module-web-view": "^1.2.3"
+    "sketch-module-web-view": "^2.1.1"
   },
   "resources": [
     "resources/**/*.js"

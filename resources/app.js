@@ -1,10 +1,3 @@
-import pluginCall from "sketch-module-web-view/client"
-
-// Disable the context menu to have a more native feel
-if (process.env.NODE_ENV === "production") {
-  document.addEventListener("contextmenu", e => e.preventDefault())
-}
-
 // All inputs
 let allInputs = []
 ;[
@@ -48,5 +41,5 @@ const generateSettings = () => {
 populateSettings()
 
 document.getElementById("submit").addEventListener("click", function() {
-  pluginCall("updateSettings", generateSettings())
+  window.postMessage('updateSettings', generateSettings())
 })
