@@ -8,7 +8,8 @@ export const settingsKeys = {
   GRIDVERTICALSPACE: "gridVerticalSpace",
   ARRANGEONADD: "arrangeOnAdd",
   RENAMEARTBOARDS: "renameArtboards",
-  ARTBOARDBASENAMES: "artboardBasenames"
+  ARTBOARDBASENAMES: "artboardBasenames",
+  MINIMUMINTEGERDIGITS: "minimumIntegerDigits"
 }
 
 export function ArtboardSettings(context) {
@@ -82,6 +83,7 @@ export function getDefaultSettings() {
     obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
     obj[settingsKeys.ARRANGEONADD] = false
     obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
+    obj[settingsKeys.MINIMUMINTEGERDIGITS] = 2
     setSettings(obj)
     return obj
   } else {

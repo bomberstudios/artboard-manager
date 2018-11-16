@@ -120,7 +120,8 @@ export function ArrangeArtboards(context) {
       artboard.frame().x = layoutX + offsetX
       offsetX += artboard.frame().width() + config.gridHorizontalSpace
       if (config.renameArtboards) {
-        artboard.setName(config.artboardBasenames[rowNumber] + columnNumber)
+        artboard.setName(config.artboardBasenames[rowNumber] + 
+          columnNumber.toLocaleString('en-US', {minimumIntegerDigits: config.minimumIntegerDigits, useGrouping:false}))
       }
       columnNumber++
     }
