@@ -4,7 +4,7 @@ This plugin automatically arranges the position of all Artboards in your Sketch 
 
 ![](https://user-images.githubusercontent.com/3832/28533105-3a1586ca-709c-11e7-8544-87d2bb0ad4f1.gif)
 
-It’s still a work in progress (the plugin is optimised for iPhone-sized Artboards, and it doesn’t even have an easy way to change the config…) but it’ll get better 🤞.
+It’s still a work in progress (the plugin is optimised for iPhone-sized Artboards, and won't really work for anything else) but it’ll get better 🤞.
 
 ## Installation
 
@@ -18,24 +18,12 @@ If, for some reason, you want to arrange your Artboards manually, you can choose
 
 ## Configuration
 
-You can tweak some of the settings by searching for this bit of code and editing it:
+You can tweak some of the settings by opening Plugins › Artboard Manager › Settings.
 
-```javascript
-var config = {
-  renameArtboards: false,
-  snapDistance: 400,
-  gridHorizontalSpace: 50,
-  gridVerticalSpace: 500,
-  artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-  minimumIntegerDigits: 2
-};
-```
-
-- If you set `renameArtboards` to `true`, the plugin will rename _all_ artboards in the current page, so handle it with care :)
+Note: If you enable the 'Rename Artboards' option, the plugin will rename _all_ artboards in the current page, so handle it with care :)
 
 ## TODO
 
 - Arrange artboards on artboard creation & deletion (right now they’re arranged on move and resize)
-- UI for editing preferences
 - Ability to enable the plugin per document / page
 - Ability to rename Artboards automatically based on multiple criteria
