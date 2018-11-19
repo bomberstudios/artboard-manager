@@ -34,7 +34,7 @@ const anArtboardIsSelected = function(context){
   // We need a document, let's try some options:
   const doc = context.document || context.actionContext.document || NSApp.orderedDocuments().firstObject()
   const selectedLayers = doc.selectedLayers().layers()
-  console.log(selectedLayers)
+  // console.log(selectedLayers)
   if (selectedLayers.count() > 0) {
     for (const layer of Array.from(selectedLayers)) {
       if (layer.className() == "MSArtboardGroup") {
@@ -68,11 +68,10 @@ export function LayersMoved (context) {
 }
 
 export function ArrangeArtboards(context) {
-  console.log("=======================================================")
-  console.log("ArrangeArtboards")
   const doc = sketch.getSelectedDocument()
   const originalSelection = doc.selectedLayers
   const artboards = doc.selectedPage.layers.filter(layer => layer.type == 'Artboard')
+
   const nativeArtboards = artboards.map(artboard => artboard.sketchObject)
 
   const layoutBounds = MSLayerGroup.groupBoundsForContainer(MSLayerArray.arrayWithLayers(nativeArtboards))
@@ -164,12 +163,12 @@ export function Resize(context){
 }
 
 export function ResizeArtboardToFit(context){
-  console.log("ResizeArtboardToFit")
+  // console.log("ResizeArtboardToFit")
   Resize(context)
 }
 
 export function InsertArtboard(context){
-  console.log('InsertArtboard');
+  // console.log('InsertArtboard');
 }
 
 function snapValueToGrid(value, grid) {
