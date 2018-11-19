@@ -18,9 +18,12 @@ If, for some reason, you want to arrange your Artboards manually, you can choose
 
 ## Configuration
 
-You can tweak some of the settings by opening Plugins › Artboard Manager › Settings.
+You can tweak some of the settings by opening Plugins › Artboard Manager › Settings:
 
-Note: If you enable the 'Rename Artboards' option, the plugin will rename _all_ artboards in the current page, so handle it with care :)
+- **Horizontal Space** is the amount of pixels you want to have between your Artboard columns. The default is 50.
+- **Vertical Space** is the amount of pixels you want to have between your Artboard rows. The default is 100.
+- **Rename Artboards**: if enabled, the plugin will rename _all_ Artboards in the current page when arranging the layout, so handle it with care :)
+- **Arrange on Add**: if enabled, the Artboards will be automatically arranged when a new Artboard is added to the canvas.
 
 ## TODO
 
