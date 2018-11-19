@@ -1,4 +1,6 @@
-import BrowserWindow from "sketch-module-web-view"
+// TODO: Settings window doesn't seem to be working as expected in 10.13
+
+const BrowserWindow = require("sketch-module-web-view")
 const Settings = require("sketch/settings")
 const UI = require("sketch/ui")
 
@@ -42,6 +44,8 @@ export function ArtboardSettings(context) {
 
   // add a handler for a call from web content's javascript
   webContents.on("updateSettings", d => {
+    console.log('Updating settings')
+    console.log(d)
     setSettings(d)
     browserWindow.close()
   })
@@ -78,8 +82,8 @@ export function getDefaultSettings() {
   if (currentSettings.isUndefined) {
     let obj = {}
     obj[settingsKeys.RENAMEARTBOARDS] = false
-    obj[settingsKeys.SNAPDISTANCE] = 400
-    obj[settingsKeys.GRIDVERTICALSPACE] = 500
+    obj[settingsKeys.SNAPDISTANCE] = 300
+    obj[settingsKeys.GRIDVERTICALSPACE] = 100
     obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
     obj[settingsKeys.ARRANGEONADD] = false
     obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
