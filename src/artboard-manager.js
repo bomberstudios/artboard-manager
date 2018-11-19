@@ -31,18 +31,8 @@ export function ArtboardChanged(context) {
 
 const anArtboardIsSelected = function(context){
   // console.log("anArtboardIsSelected")
-  // We need a document, let's try some options:
-  const doc = context.document || context.actionContext.document || NSApp.orderedDocuments().firstObject()
-  const selectedLayers = doc.selectedLayers().layers()
-  // console.log(selectedLayers)
-  if (selectedLayers.count() > 0) {
-    for (const layer of Array.from(selectedLayers)) {
-      if (layer.className() == "MSArtboardGroup") {
-        return true
-      }
-    }
-  }
-  return false
+  const selectedLayers = sketch.getSelectedDocument().selectedLayers.layers
+  return selectedLayers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster')).length > 0
 }
 
 export function Duplicate(context) {
@@ -54,15 +44,8 @@ export function Duplicate(context) {
 
 export function LayersMoved (context) {
   // console.log("LayersMoved")
-  const movedLayers = Array.from(context.actionContext.layers)
-  let needToArrange = false
-
-  for (const layer of movedLayers) {
-    if(layer.className() == "MSArtboardGroup") {
-      needToArrange = true
-    }
-  }
-  if (needToArrange) {
+  const movedLayers = Array.from(context.actionContext.layers).map(layer => sketch.fromNative(layer))
+  if (movedLayers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster')).length > 0) {
     ArrangeArtboards(context)
   }
 }
@@ -70,8 +53,8 @@ export function LayersMoved (context) {
 export function ArrangeArtboards(context) {
   const doc = sketch.getSelectedDocument()
   const originalSelection = doc.selectedLayers
-  const artboards = doc.selectedPage.layers.filter(layer => layer.type == 'Artboard')
-
+  const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster'))
+  
   const nativeArtboards = artboards.map(artboard => artboard.sketchObject)
 
   const layoutBounds = MSLayerGroup.groupBoundsForContainer(MSLayerArray.arrayWithLayers(nativeArtboards))
