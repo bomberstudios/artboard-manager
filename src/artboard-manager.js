@@ -54,13 +54,11 @@ export function ArrangeArtboards(context) {
   const doc = sketch.getSelectedDocument()
   const originalSelection = doc.selectedLayers
   const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster'))
-  
+
   const nativeArtboards = artboards.map(artboard => artboard.sketchObject)
 
+  // TODO: calculate this with the JS API
   const layoutBounds = MSLayerGroup.groupBoundsForContainer(MSLayerArray.arrayWithLayers(nativeArtboards))
-
-  const layoutWidth  = layoutBounds.size.width
-  const layoutHeight = layoutBounds.size.height
 
   // This will be the starting point for our Artboard Grid
   const layoutX  = layoutBounds.origin.x
