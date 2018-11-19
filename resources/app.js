@@ -3,7 +3,6 @@ let allInputs = []
 ;[
   "gridHorizontalSpace",
   "gridVerticalSpace",
-  "snapDistance",
   "renameArtboards",
   "arrangeOnAdd"
 ].forEach(id => {

@@ -5,7 +5,6 @@ const Settings = require("sketch/settings")
 const UI = require("sketch/ui")
 
 export const settingsKeys = {
-  SNAPDISTANCE: "snapDistance",
   GRIDHORIZONTALSPACE: "gridHorizontalSpace",
   GRIDVERTICALSPACE: "gridVerticalSpace",
   ARRANGEONADD: "arrangeOnAdd",
@@ -82,7 +81,6 @@ export function getDefaultSettings() {
   if (currentSettings.isUndefined) {
     let obj = {}
     obj[settingsKeys.RENAMEARTBOARDS] = false
-    obj[settingsKeys.SNAPDISTANCE] = 300
     obj[settingsKeys.GRIDVERTICALSPACE] = 100
     obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
     obj[settingsKeys.ARRANGEONADD] = false

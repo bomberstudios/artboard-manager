@@ -83,7 +83,7 @@ export function ArrangeArtboards(context) {
   const layoutX  = layoutBounds.origin.x
   const layoutY = layoutBounds.origin.y
 
-  // TODO: Dynamic snapping distance, based on Artboard size?
+  // Dynamic snapping distance, based on Artboard size.
   var averageHeight = artboards.reduce((initial, artboard) => {
     initial += artboard.frame.height
     return initial
@@ -95,9 +95,9 @@ export function ArrangeArtboards(context) {
     return initial
   },0)
 
-  var snapDistance = averageHeight
-  var snapDistance = config.snapDistance
-  var snapDistance = maxHeight // I think this one is nicer
+  var snapDistance = averageHeight // This one works great with mixed sizes
+  // var snapDistance = config.snapDistance // Removed, defaulted to 300
+  // var snapDistance = maxHeight
 
   // First, snap all Artboards to the grid, to group them by rows
   // They may overlap, but we'll fix that in a minute
