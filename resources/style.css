@@ -1,6 +1,5 @@
 html {
   box-sizing: border-box;
-  background: transparent;
 
   /* Prevent the page to be scrollable */
   overflow: hidden;
@@ -27,6 +26,7 @@ body {
   color: #242424;
   letter-spacing: -0.08px;
   font-family: -apple-system;
+  background-color: #f9f9f9;
 }
 
 input,

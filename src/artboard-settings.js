@@ -1,8 +1,9 @@
 // TODO: Settings window doesn't seem to be working as expected in 10.13
 
 const BrowserWindow = require("sketch-module-web-view")
-const Settings = require("sketch/settings")
-const UI = require("sketch/ui")
+const sketch = require('sketch')
+const Settings = sketch.Settings
+const UI = sketch.UI
 
 export const settingsKeys = {
   GRIDHORIZONTALSPACE: "gridHorizontalSpace",
@@ -17,12 +18,13 @@ export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
     width: 242,
-    height: 227,
+    height: 196,
     show: false,
     resizable: false,
     title: "Settings",
     minimizable: false,
-    maximizable: false
+    maximizable: false,
+    backgroundColor: '#F9F9F9'
   }
 
   var browserWindow = new BrowserWindow(options)
@@ -43,13 +45,13 @@ export function ArtboardSettings(context) {
 
   // add a handler for a call from web content's javascript
   webContents.on("updateSettings", d => {
-    console.log('Updating settings')
-    console.log(d)
+    // console.log('Updating settings')
     setSettings(d)
     browserWindow.close()
   })
 
   browserWindow.on("closed", () => {
+    // TODO: rearrange Artboards
     browserWindow = null
   })
 
