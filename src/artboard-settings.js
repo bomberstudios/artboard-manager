@@ -1,5 +1,3 @@
-// TODO: Settings window doesn't seem to be working as expected in 10.13
-
 const BrowserWindow = require("sketch-module-web-view")
 const sketch = require('sketch')
 const Settings = sketch.Settings
