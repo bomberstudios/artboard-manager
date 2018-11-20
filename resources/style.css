@@ -26,7 +26,8 @@ body {
   color: #242424;
   letter-spacing: -0.08px;
   font-family: -apple-system;
-  background-color: #f9f9f9;
+  background-color: #ececec;
+  padding: 16px;
 }
 
 input,
@@ -35,23 +36,20 @@ textarea {
   user-select: auto;
 }
 
-.wrapper {
-  padding: 16px;
-}
 label {
   display: block;
-  padding-bottom: 12px;
+  margin-bottom: 1em;
 }
 
 label span {
   text-align: right;
-  width: 143px;
-  padding-right: 4px;
+  width: 14em;
+  padding-right: 0.3em;
   display: inline-block;
 }
 
 input[type="number"] {
-  width: 60px;
+  width: 6em;
 }
 
 footer {

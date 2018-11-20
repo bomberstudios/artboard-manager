@@ -17,14 +17,14 @@ export const settingsKeys = {
 export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
-    width: 242,
-    height: 258,
+    width: 400,
+    height: 260,
     show: false,
-    resizable: false,
-    title: "Settings",
+    resizable: true,
+    title: "Artboard Manager — Settings",
     minimizable: false,
     maximizable: false,
-    backgroundColor: '#F9F9F9'
+    backgroundColor: '#ececec'
   }
 
   var browserWindow = new BrowserWindow(options)
