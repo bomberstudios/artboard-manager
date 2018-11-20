@@ -9,14 +9,16 @@ export const settingsKeys = {
   ARRANGEONADD: "arrangeOnAdd",
   RENAMEARTBOARDS: "renameArtboards",
   ARTBOARDBASENAMES: "artboardBasenames",
-  MINIMUMINTEGERDIGITS: "minimumIntegerDigits"
+  MINIMUMINTEGERDIGITS: "minimumIntegerDigits",
+  ARRANGESYMBOLS: "arrangeSymbols",
+  ARRANGESYMBOLSPAGE: "arrangeSymbolsPage"
 }
 
 export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
     width: 242,
-    height: 196,
+    height: 258,
     show: false,
     resizable: false,
     title: "Settings",
@@ -84,6 +86,8 @@ export function getDefaultSettings() {
     obj[settingsKeys.GRIDVERTICALSPACE] = 100
     obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
     obj[settingsKeys.ARRANGEONADD] = false
+    obj[settingsKeys.ARRANGESYMBOLS] = true
+    obj[settingsKeys.ARRANGESYMBOLSPAGE] = false
     obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
     obj[settingsKeys.MINIMUMINTEGERDIGITS] = 2
     setSettings(obj)

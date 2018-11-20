@@ -7,7 +7,9 @@ let allInputs = []
   "gridHorizontalSpace",
   "gridVerticalSpace",
   "renameArtboards",
-  "arrangeOnAdd"
+  "arrangeOnAdd",
+  "arrangeSymbols",
+  "arrangeSymbolsPage"
 ].forEach(id => {
   allInputs.push(document.getElementById(id))
 })

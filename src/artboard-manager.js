@@ -32,7 +32,7 @@ export function ArtboardChanged(context) {
 const anArtboardIsSelected = function(context){
   // console.log("anArtboardIsSelected")
   const selectedLayers = sketch.getSelectedDocument().selectedLayers.layers
-  return selectedLayers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster')).length > 0
+  return selectedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0
 }
 
 export function Duplicate(context) {
@@ -45,15 +45,24 @@ export function Duplicate(context) {
 export function LayersMoved (context) {
   // console.log("LayersMoved")
   const movedLayers = Array.from(context.actionContext.layers).map(layer => sketch.fromNative(layer))
-  if (movedLayers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster')).length > 0) {
+  if (movedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0) {
     ArrangeArtboards(context)
   }
 }
 
 export function ArrangeArtboards(context) {
   const doc = sketch.getSelectedDocument()
+  const page = doc.selectedPage
+  const symbolsPage = doc._object.documentData().symbolsPage()
+
+  // Don't arrange Artboards if we’re on the Symbols page and the setting
+  // is disabled
+  if (page._object == symbolsPage && config.arrangeSymbolsPage == false) {
+    return
+  }
+
   const originalSelection = doc.selectedLayers
-  const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster'))
+  const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols)))
 
   // This will be the starting point for our Artboard Grid
   const layoutX = artboards.reduce((initial, artboard) => {
