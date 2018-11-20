@@ -55,14 +55,19 @@ export function ArrangeArtboards(context) {
   const originalSelection = doc.selectedLayers
   const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || layer.type == 'SymbolMaster'))
 
-  const nativeArtboards = artboards.map(artboard => artboard.sketchObject)
-
-  // TODO: calculate this with the JS API
-  const layoutBounds = MSLayerGroup.groupBoundsForContainer(MSLayerArray.arrayWithLayers(nativeArtboards))
-
   // This will be the starting point for our Artboard Grid
-  const layoutX  = layoutBounds.origin.x
-  const layoutY = layoutBounds.origin.y
+  const layoutX = artboards.reduce((initial, artboard) => {
+    if (artboard.frame.x < initial) {
+      initial = artboard.frame.x
+    }
+    return initial
+  }, 10000000)
+  const layoutY = artboards.reduce((initial, artboard) => {
+    if (artboard.frame.y < initial) {
+      initial = artboard.frame.y
+    }
+    return initial
+  }, 10000000)
 
   // Dynamic snapping distance, based on Artboard size.
   // Use the average height of all Artboards. This works great with mixed Artboard sizes,
