@@ -1,7 +1,7 @@
 {
   "name": "artboard-manager",
   "description": "Because moving artboards manually is *so* 2016.",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "main": "index.js",
   "scripts": {
     "build": "skpm-build",
