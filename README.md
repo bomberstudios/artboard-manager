@@ -25,6 +25,7 @@ You can tweak some of the settings by opening Plugins › Artboard Manager › S
 - **Arrange on Add**: if enabled, the Artboards will be automatically arranged when a new Artboard is added to the canvas.
 - **Arrange Symbols**: if enabled, Artboards which are masters for Symbols are also arranged.
 - **Arrange Symbols Page**: if enabled, Artboards in the Symbols page will be arranged when you move them. It defaults to off, in case you’re using something like [Symbol Organiser](https://github.com/sonburn/symbol-organizer).
+- **Exclude Pattern**: if you Artboard names start with this pattern, they will be ignored by the plugin.
 
 ## TODO
 

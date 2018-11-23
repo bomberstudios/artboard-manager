@@ -2,6 +2,7 @@
   "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
   "compatibleVersion": 3,
   "bundleVersion": 1,
+  "icon": "artboard-manager.png",
   "commands": [
     {
       "name": "Artboard Manager",

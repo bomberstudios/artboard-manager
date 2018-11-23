@@ -9,7 +9,8 @@ let allInputs = []
   "renameArtboards",
   "arrangeOnAdd",
   "arrangeSymbols",
-  "arrangeSymbolsPage"
+  "arrangeSymbolsPage",
+  "excludePattern"
 ].forEach(id => {
   allInputs.push(document.getElementById(id))
 })

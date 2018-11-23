@@ -36,7 +36,10 @@
     "identifier": "com.bomberstudios.sketchplugins.artboard-manager",
     "authorEmail": "bomberstudios@gmail.com",
     "manifest": "src/manifest.json",
-    "main": "artboard-manager.sketchplugin"
+    "main": "artboard-manager.sketchplugin",
+    "assets": [
+      "assets/**/*"
+    ]
   },
   "dependencies": {
     "sketch-module-web-view": "^2.1.1"

@@ -62,7 +62,7 @@ export function ArrangeArtboards(context) {
   }
 
   const originalSelection = doc.selectedLayers
-  const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols)))
+  const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).filter(shouldArrangeArtboard)
 
   // This will be the starting point for our Artboard Grid
   const layoutX = artboards.reduce((initial, artboard) => {
@@ -178,4 +178,8 @@ function snapValueToGrid(value, grid) {
     div += 1
   }
   return Math.floor(Math.floor(div) * grid)
+}
+
+function shouldArrangeArtboard(artboard){
+  return !artboard.name.startsWith(config.excludePattern)
 }

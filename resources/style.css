@@ -48,7 +48,8 @@ label span {
   display: inline-block;
 }
 
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
   width: 6em;
 }
 
