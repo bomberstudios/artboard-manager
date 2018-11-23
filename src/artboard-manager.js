@@ -78,6 +78,7 @@ export function ArrangeArtboards(context) {
     return initial
   }, 10000000)
 
+  // TODO: Maybe expose these options as a setting?
   // Dynamic snapping distance, based on Artboard size.
   // Use the average height of all Artboards. This works great with mixed Artboard sizes,
   // but there are minor issues if there are Artboards that are really tall
@@ -142,7 +143,7 @@ export function ArrangeArtboards(context) {
   // Restore original selection
   originalSelection.forEach(artboard => artboard.selected = true)
 
-  UI.message('Artboards arranged')
+  // UI.message('Artboards arranged')
 }
 
 export function Resize(context){
