@@ -19,13 +19,15 @@ If, for some reason, you want to arrange your Artboards manually, you can choose
 
 You can tweak some of the settings by opening Plugins › Artboard Manager › Settings:
 
-- **Horizontal Space** is the amount of pixels you want to have between your Artboard columns. The default is 50.
-- **Vertical Space** is the amount of pixels you want to have between your Artboard rows. The default is 100.
-- **Rename Artboards**: if enabled, the plugin will rename _all_ Artboards in the current page when arranging the layout, so handle it with care :)
+- **Horizontal Space**: the amount of pixels you want to have between your Artboard columns. The default is 50.
+- **Vertical Space**: the amount of pixels you want to have between your Artboard rows. The default is 100.
+- **Rename Artboards**: if enabled, the plugin will rename _all_ Artboards in the current page when arranging the layout, so handle it with care!
 - **Arrange on Add**: if enabled, the Artboards will be automatically arranged when a new Artboard is added to the canvas.
+- **Arrange Symbols**: if enabled, Artboards which are masters for Symbols are also arranged.
+- **Arrange Symbols Page**: if enabled, Artboards in the Symbols page will be arranged when you move them. It defaults to off, in case you’re using something like [Symbol Organiser](https://github.com/sonburn/symbol-organizer).
 
 ## TODO
 
-- Arrange artboards on deletion
+- Arrange artboards on deletion and rotation
 - Ability to enable the plugin per document / page
 - Ability to rename Artboards automatically based on multiple criteria
