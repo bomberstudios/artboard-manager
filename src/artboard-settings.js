@@ -17,7 +17,7 @@ export const settingsKeys = {
 export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
-    width: 400,
+    width: 350,
     height: 260,
     show: false,
     resizable: true,
