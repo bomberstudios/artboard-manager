@@ -128,7 +128,16 @@ export function ArrangeArtboards(context) {
         tallestArtboard = artboard.frame.height
       }
       if (config.renameArtboards) {
-        artboard.name = config.artboardBasenames[currentRow] + currentColumn.toLocaleString('en-US', {minimumIntegerDigits: config.minimumIntegerDigits, useGrouping:false})
+        var artboard_name = config.artboardBasenames[currentRow] + currentColumn.toLocaleString('en-US', {minimumIntegerDigits: config.minimumIntegerDigits, useGrouping:false})
+        // UI.message(artboard_name)
+        UI.message(artboard_name)
+
+        var pageObj = artboard.parent
+        UI.message(pageObj.name)
+        var pageName = pageObj.name.replace(" ","-")
+
+
+        artboard.name = artboard_name+"_"+pageName
       }
     })
     artboardY += tallestArtboard + config.gridVerticalSpace
