@@ -55,9 +55,11 @@ export function ArrangeArtboards(context) {
   const page = doc.selectedPage
   const symbolsPage = doc._object.documentData().symbolsPage()
 
+  var currentPage = sketch.getSelectedDocument().selectedPage
+  var excludePage = currentPage.name.startsWith(config.excludePattern)
   // Don't arrange Artboards if we’re on the Symbols page and the setting
   // is disabled
-  if (page._object == symbolsPage && config.arrangeSymbolsPage == false) {
+  if (page._object == symbolsPage && config.arrangeSymbolsPage == false || excludePage == true) {
     return
   }
 
