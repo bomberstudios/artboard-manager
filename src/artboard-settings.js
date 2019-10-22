@@ -21,7 +21,7 @@ export function ArtboardSettings(context) {
     width: 350,
     height: 292,
     show: false,
-    resizable: true,
+    resizable: false,
     title: "Artboard Manager — Settings",
     minimizable: false,
     maximizable: false,
@@ -39,9 +39,8 @@ export function ArtboardSettings(context) {
 
   // Get Settings
   webContents.on("did-start-loading", () => {
-    webContents.executeJavaScript(
-      `window.settings=${JSON.stringify(getDefaultSettings())};`
-    )
+    let defaultSettings = getDefaultSettings()
+    webContents.executeJavaScript(`window.settings=${JSON.stringify(defaultSettings)}; populateSettings()`)
   })
 
   // add a handler for a call from web content's javascript
@@ -90,7 +89,7 @@ export function getDefaultSettings() {
     obj[settingsKeys.ARRANGESYMBOLS] = true
     obj[settingsKeys.ARRANGESYMBOLSPAGE] = false
     obj[settingsKeys.EXCLUDEPATTERN] = "--"
-    obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
+    obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     obj[settingsKeys.MINIMUMINTEGERDIGITS] = 2
     setSettings(obj)
     return obj

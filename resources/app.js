@@ -15,8 +15,7 @@ let allInputs = []
   allInputs.push(document.getElementById(id))
 })
 
-const populateSettings = () => {
-  if (window.settings === undefined) populateSettings()
+window.populateSettings = () => {
   allInputs.forEach(input => {
     if (input.type === "checkbox") {
       input.checked = window.settings[input.id]
@@ -42,8 +41,6 @@ const generateSettings = () => {
 
   return obj
 }
-
-populateSettings()
 
 document.getElementById("submit").addEventListener("click", function() {
   window.postMessage('updateSettings', generateSettings())
