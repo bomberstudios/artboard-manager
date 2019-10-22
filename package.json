@@ -42,7 +42,7 @@
     ]
   },
   "dependencies": {
-    "sketch-module-web-view": "^2.1.1"
+    "sketch-module-web-view": "^3.3.0"
   },
   "resources": [
     "resources/**/*.js"
