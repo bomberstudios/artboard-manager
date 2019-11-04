@@ -12,14 +12,17 @@ export const settingsKeys = {
   MINIMUMINTEGERDIGITS: "minimumIntegerDigits",
   ARRANGESYMBOLS: "arrangeSymbols",
   ARRANGESYMBOLSPAGE: "arrangeSymbolsPage",
-  EXCLUDEPATTERN: "excludePattern"
+  EXCLUDEPATTERN: "excludePattern",
+  STAMPARTBOARDNAME:"stampArtBoardName",
+  STAMPLABELCOLOR:"stampLabelColor",
+  STAMPTEXTSIZE:"stampTextSize"
 }
 
 export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
     width: 350,
-    height: 292,
+    height: 400,
     show: false,
     resizable: false,
     title: "Artboard Manager — Settings",
@@ -82,13 +85,16 @@ export function getDefaultSettings() {
   /* prettier-ignore */
   if (currentSettings.isUndefined) {
     let obj = {}
-    obj[settingsKeys.RENAMEARTBOARDS] = false
+    obj[settingsKeys.RENAMEARTBOARDS] = true
     obj[settingsKeys.GRIDVERTICALSPACE] = 100
     obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
-    obj[settingsKeys.ARRANGEONADD] = false
+    obj[settingsKeys.ARRANGEONADD] = true
     obj[settingsKeys.ARRANGESYMBOLS] = true
     obj[settingsKeys.ARRANGESYMBOLSPAGE] = false
+    obj[settingsKeys.STAMPARTBOARDNAME] = true
+    obj[settingsKeys.STAMPLABELCOLOR] = "#ff0090"
     obj[settingsKeys.EXCLUDEPATTERN] = "--"
+    obj[settingsKeys.STAMPTEXTSIZE] = 30
     obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     obj[settingsKeys.MINIMUMINTEGERDIGITS] = 2
     setSettings(obj)

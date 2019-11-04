@@ -10,7 +10,10 @@ let allInputs = []
   "arrangeOnAdd",
   "arrangeSymbols",
   "arrangeSymbolsPage",
-  "excludePattern"
+  "excludePattern",
+  "stampArtBoardName",
+  "stampLabelColor",
+  "stampTextSize"
 ].forEach(id => {
   allInputs.push(document.getElementById(id))
 })
