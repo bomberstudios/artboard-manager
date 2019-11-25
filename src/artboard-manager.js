@@ -1,4 +1,9 @@
 const sketch = require('sketch')
+const Text = require('sketch/dom').Text
+const Rectangle = require('sketch/dom').Rectangle
+const Shape = require('sketch/dom').Shape
+const Group = require('sketch/dom').Group
+
 const UI = sketch.UI
 import { getDefaultSettings } from "./artboard-settings.js"
 
@@ -13,7 +18,6 @@ const sort_by_y_position = function(a,b) {
 }
 
 export function ArtboardChanged(context) {
-  // console.log("ArtboardChanged")
   // Called on
   // - Add
   // - Remove
@@ -55,9 +59,11 @@ export function ArrangeArtboards(context) {
   const page = doc.selectedPage
   const symbolsPage = doc._object.documentData().symbolsPage()
 
+  var currentPage = sketch.getSelectedDocument().selectedPage
+  var excludePage = currentPage.name.startsWith(config.excludePattern)
   // Don't arrange Artboards if we’re on the Symbols page and the setting
   // is disabled
-  if (page._object == symbolsPage && config.arrangeSymbolsPage == false) {
+  if (page._object == symbolsPage && config.arrangeSymbolsPage == false || excludePage == true) {
     return
   }
 
@@ -125,8 +131,64 @@ export function ArrangeArtboards(context) {
       if (artboard.frame.height > tallestArtboard) {
         tallestArtboard = artboard.frame.height
       }
+
       if (config.renameArtboards) {
-        artboard.name = config.artboardBasenames[currentRow] + currentColumn.toLocaleString('en-US', {minimumIntegerDigits: config.minimumIntegerDigits, useGrouping:false})
+        var artboard_name = config.artboardBasenames[currentRow] + currentColumn.toLocaleString('en-US', {minimumIntegerDigits: config.minimumIntegerDigits, useGrouping:false})
+
+        var pageObj = artboard.parent
+        var pageName = pageObj.name.replace(" ","-")
+        var artBoardFinalName = pageName + "_" + artboard_name
+        artboard.name = artBoardFinalName
+        // remove Labelz
+        //
+        if (artboard.layers.length > 0 ){
+          for (var i = 0; i < artboard.layers.length; i++) {
+            if (artboard.layers[i].name === "ArtboardLabel"){
+              artboard.layers[i].remove()
+            }
+          }
+        }
+
+
+        if (config.stampArtBoardName == true){
+          const padding = config.stampTextSize * 2
+          const labelColor = config.stampLabelColor //"#ff0090"
+          // Add label name
+          const label = new Shape({
+            name: "rectMask",
+            parent: artboard,
+            frame: new Rectangle(0,artboard.frame.height-padding,artboard.frame.width,padding),
+            style: {
+              fills: [labelColor],
+              borders: [{enabled:false}]
+            }
+          })
+
+          const text = new Text({
+            text: artBoardFinalName,
+            alignment: Text.Alignment.center,
+            frame: new Rectangle(0,artboard.frame.height-config.stampTextSize*1.7,artboard.frame.width,artboard.frame.height),
+            locked: true,
+            parent:artboard,
+          })
+          text.style.fontFamily = "Courier"
+          text.style.fontSize = config.stampTextSize;
+          text.style.textColor = "#ffffff"
+
+          // text.adjustToFit();
+
+          var group = new Group({
+            name: 'ArtboardLabel',
+            parent: artboard,
+            locked: true
+          })
+
+          group.frame.width = label.frame.width;
+          group.frame.height = label.frame.height;
+
+          group.layers.push(label);
+          group.layers.push(text);
+        }
       }
     })
     artboardY += tallestArtboard + config.gridVerticalSpace
