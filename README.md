@@ -13,7 +13,10 @@ This plugin automatically arranges the position of all Artboards in your Sketch 
 
 Once the plugin is installed, Artboards will be arranged automatically when added, moved, or resized.
 
+If you want to disable the plugin temporarily, you can toggle it using the **Auto Mode** menu option (shortcut: `Ctrl Shift A`). The setting is stored in the app's preferences, so it will persist between launches.
+
 If, for some reason, you want to arrange your Artboards manually, you can choose the Artboard Manager › Arrange Artboards menu option.
+
 
 ## Configuration
 
@@ -22,10 +25,10 @@ You can tweak some of the settings by opening Plugins › Artboard Manager › S
 - **Horizontal Space**: the amount of pixels you want to have between your Artboard columns. The default is 50.
 - **Vertical Space**: the amount of pixels you want to have between your Artboard rows. The default is 100.
 - **Rename Artboards**: if enabled, the plugin will rename _all_ Artboards in the current page when arranging the layout, so handle it with care!
-- **Arrange on Add**: if enabled, the Artboards will be automatically arranged when a new Artboard is added to the canvas. Defaults to on.
 - **Arrange Symbols**: if enabled, Artboards which are masters for Symbols are also arranged. Defaults to off.
 - **Arrange Symbols Page**: if enabled, Artboards in the Symbols page will be arranged when you move them. It defaults to off, in case you’re using something like [Symbol Organiser](https://github.com/sonburn/symbol-organizer).
 - **Exclude Pattern**: if your Artboard names start with this pattern, they will be ignored by the plugin. Defaults to `--`.
+
 
 ## TODO
 
