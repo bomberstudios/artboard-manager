@@ -32,3 +32,4 @@ You can tweak some of the settings by opening Plugins › Artboard Manager › S
 - Arrange artboards on deletion and rotation
 - Ability to enable the plugin per document / page
 - Ability to rename Artboards automatically based on multiple criteria
+- Use the DocumentChange action, instead of the horrible hacks we use now (v2.0)
