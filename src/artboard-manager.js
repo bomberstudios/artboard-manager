@@ -1,9 +1,13 @@
 const sketch = require('sketch')
 const UI = sketch.UI
+const Settings = sketch.Settings
+
 import { getDefaultSettings } from "./artboard-settings.js"
 
 // Config
 let config = getDefaultSettings()
+
+checkMarkMenu()
 
 const sort_by_x_position = function(a,b){
   return a.frame.x - b.frame.x
@@ -77,7 +81,31 @@ export function Resize(context){
   }
 }
 
+export function ResizeArtboardToFit(context){
+  if (sketch.version.sketch < 59) {
+    // console.log("ResizeArtboardToFit")
+    Resize(context)
+  }
+}
+
+export function InsertArtboard(context){
+  if (sketch.version.sketch < 59) {
+    // console.log('InsertArtboard');
+  }
+}
+
+export function ToggleAutoMode(){
+  let autoMode = Settings.settingForKey("autoMode")
+  Settings.setSettingForKey("autoMode", !autoMode)
+  checkMarkMenu()
+  UI.message(`Artboard Manager: Auto Mode ${Settings.settingForKey("autoMode") ? "enabled" : "disabled"}`)
+}
+
 export function ArrangeArtboards(context) {
+  console.log(`Auto Mode is ${config.autoMode}`)
+  if (!config.autoMode) {
+    return
+  }
   const doc = sketch.getSelectedDocument()
   const page = doc.selectedPage
   const symbolsPage = doc._object.documentData().symbolsPage()
@@ -171,21 +199,6 @@ export function ArrangeArtboards(context) {
 
   // Restore original selection
   originalSelection.forEach(artboard => artboard.selected = true)
-
-  // UI.message('Artboards arranged')
-}
-
-export function ResizeArtboardToFit(context){
-  if (sketch.version.sketch < 59) {
-    // console.log("ResizeArtboardToFit")
-    Resize(context)
-  }
-}
-
-export function InsertArtboard(context){
-  if (sketch.version.sketch < 59) {
-    // console.log('InsertArtboard');
-  }
 }
 
 function snapValueToGrid(value, grid) {
@@ -206,4 +219,18 @@ function anArtboardIsSelected(context){
   // console.log("anArtboardIsSelected")
   const selectedLayers = sketch.getSelectedDocument().selectedLayers.layers
   return selectedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0
+}
+
+export function checkMarkMenu(){
+  // Set checkmark for Auto Mode
+  let menu = NSApplication.sharedApplication().mainMenu()
+  let pluginsMenu = menu.itemWithTitle('Plugins').submenu()
+  let singlePluginsMenu = pluginsMenu.itemWithTitle('Artboard Manager').submenu()
+  // singlePluginsMenu.setAutoenablesItems(false)
+  let pluginSubMenuItem = singlePluginsMenu.itemWithTitle('Auto Mode')
+  // pluginSubMenuItem.isEnabled() ? pluginSubMenuItem.setEnabled(false) : pluginSubMenuItem.setEnabled(true)
+  let autoMode = Settings.settingForKey("autoMode")
+  // console.log(`Auto Mode: ${autoMode}`);
+  if (autoMode == undefined) { autoMode == true }
+  pluginSubMenuItem.setState(autoMode)
 }

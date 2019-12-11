@@ -12,7 +12,21 @@ export const settingsKeys = {
   MINIMUMINTEGERDIGITS: "minimumIntegerDigits",
   ARRANGESYMBOLS: "arrangeSymbols",
   ARRANGESYMBOLSPAGE: "arrangeSymbolsPage",
-  EXCLUDEPATTERN: "excludePattern"
+  EXCLUDEPATTERN: "excludePattern",
+  AUTOMODE: "autoMode"
+}
+
+const defaultSettings = {
+  gridHorizontalSpace: 50,
+  gridVerticalSpace: 100,
+  arrangeOnAdd: true,
+  renameArtboards: false,
+  artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+  minimumIntegerDigits: 2,
+  arrangeSymbols: true,
+  arrangeSymbolsPage: false,
+  excludePattern: '--',
+  autoMode: true
 }
 
 export function ArtboardSettings(context) {
@@ -79,6 +93,8 @@ function setSettings(data) {
 export function getDefaultSettings() {
   const currentSettings = getSettings()
 
+  // TODO: we need to support newly introduced settings
+  // For that, we need to check for each setting and see if it's undefined
   /* prettier-ignore */
   if (currentSettings.isUndefined) {
     let obj = {}
@@ -91,6 +107,7 @@ export function getDefaultSettings() {
     obj[settingsKeys.EXCLUDEPATTERN] = "--"
     obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     obj[settingsKeys.MINIMUMINTEGERDIGITS] = 2
+    obj[settingsKeys.AUTOMODE] = true
     setSettings(obj)
     return obj
   } else {

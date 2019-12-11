@@ -9,6 +9,7 @@
       "identifier": "artboardmanager",
       "script": "./artboard-manager.js",
       "handlers": {
+        "OpenDocument": "checkMarkMenu",
         "ArtboardChanged.finish": "ArtboardChanged",
         "LayersMoved.finish": "LayersMoved",
         "Duplicate.finish": "Duplicate",
@@ -26,6 +27,13 @@
       "identifier": "artboardmanager.keyboard"
     },
     {
+      "name": "Auto Mode",
+      "script": "./artboard-manager.js",
+      "shortcut": "ctrl shift a",
+      "handler": "ToggleAutoMode",
+      "identifier": "artboardmanager.toggle"
+    },
+    {
       "name": "Settings",
       "script": "./artboard-settings.js",
       "handler": "ArtboardSettings",
@@ -34,6 +42,11 @@
   ],
   "menu": {
     "title": "Artboard Manager",
-    "items": ["artboardmanager.keyboard", "-", "artboardmanager.settings"]
+    "items": [
+      "artboardmanager.keyboard",
+      "artboardmanager.toggle",
+      "-",
+      "artboardmanager.settings"
+    ]
   }
 }
