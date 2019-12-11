@@ -13,7 +13,6 @@ const sort_by_y_position = function(a,b) {
 }
 
 export function onDocumentChanged(context){
-  UI.message('Using new API FTW')
   let arrangeArtboards = false
   context.actionContext.forEach(change => {
     let layer = sketch.fromNative(change.object())
