@@ -102,7 +102,6 @@ export function ToggleAutoMode(){
 }
 
 export function ArrangeArtboards(context) {
-  console.log(`Auto Mode is ${config.autoMode}`)
   if (!config.autoMode) {
     return
   }
@@ -199,6 +198,7 @@ export function ArrangeArtboards(context) {
 
   // Restore original selection
   originalSelection.forEach(artboard => artboard.selected = true)
+  console.log('Artboards arranged')
 }
 
 function snapValueToGrid(value, grid) {
