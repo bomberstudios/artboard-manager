@@ -23,17 +23,35 @@ html {
 
 body {
   font-size: 13px;
-  color: #242424;
   letter-spacing: -0.08px;
   font-family: -apple-system;
-  background-color: #ececec;
   padding: 16px;
+}
+body.__skpm-light {
+  color: #242424;
+  background-color: #f2f2f2;
+}
+body.__skpm-dark {
+  color: #aaa;
+  background-color: #333;
 }
 
 input,
 textarea {
   -webkit-user-select: auto;
   user-select: auto;
+  color: #262626;
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+body.__skpm-dark input,
+body.__skpm-dark textarea {
+  color: #e3e3e3;
+  background-color: #464545;
+  border: 1px solid #585858;
 }
 
 label {

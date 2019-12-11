@@ -33,13 +33,14 @@ export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
     width: 350,
-    height: 292,
+    height: 306,
     show: false,
     resizable: false,
     title: "Artboard Manager — Settings",
     minimizable: false,
     maximizable: false,
-    backgroundColor: '#ececec'
+    backgroundColor: '#ececec',
+    hidesOnDeactivate: false
   }
 
   var browserWindow = new BrowserWindow(options)
