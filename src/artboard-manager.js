@@ -12,7 +12,20 @@ const sort_by_y_position = function(a,b) {
   return a.frame.y - b.frame.y
 }
 
+export function onDocumentChanged(context){
+  UI.message('Using new API FTW')
+  let arrangeArtboards = false
+  context.actionContext.forEach(change => {
+    let layer = sketch.fromNative(change.object())
+    if (layer.type == 'Artboard') {
+      arrangeArtboards = true
+    }
+  })
+  if (arrangeArtboards) { ArrangeArtboards(context) }
+}
+
 export function ArtboardChanged(context) {
+  // if (sketch.version.sketch < 59) { }
   // console.log("ArtboardChanged")
   // Called on
   // - Add
@@ -29,24 +42,39 @@ export function ArtboardChanged(context) {
   // console.log(context.actionContext)
 }
 
-const anArtboardIsSelected = function(context){
-  // console.log("anArtboardIsSelected")
-  const selectedLayers = sketch.getSelectedDocument().selectedLayers.layers
-  return selectedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0
-}
-
-export function Duplicate(context) {
-  // console.log('Duplicate')
-  if (anArtboardIsSelected(context)) {
-    ArrangeArtboards(context)
+export function LayersMoved (context) {
+  if (sketch.version.sketch < 59) {
+    // console.log("LayersMoved")
+    const movedLayers = Array.from(context.actionContext.layers).map(layer => sketch.fromNative(layer))
+    if (movedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0) {
+      ArrangeArtboards(context)
+    }
   }
 }
 
-export function LayersMoved (context) {
-  // console.log("LayersMoved")
-  const movedLayers = Array.from(context.actionContext.layers).map(layer => sketch.fromNative(layer))
-  if (movedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0) {
-    ArrangeArtboards(context)
+export function Duplicate(context) {
+  if (sketch.version.sketch < 59) {
+    // console.log('Duplicate')
+    if (anArtboardIsSelected(context)) {
+      ArrangeArtboards(context)
+    }
+  }
+}
+
+export function Resize(context){
+  if (sketch.version.sketch < 59) {
+    // console.log("Resize")
+    // console.log(context)
+    // console.log(context.actionContext)
+    // "Normal" — User selected the Artboard tool to add an Artboard 🤔
+    if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize" || context.action == "ResizeArtboardToFit.finish") {
+      if (anArtboardIsSelected(context)) {
+        ArrangeArtboards(context)
+      }
+    }
+    if (context.actionContext.name == "InsertArtboard" && config.arrangeOnAdd) {
+      ArrangeArtboards(context)
+    }
   }
 }
 
@@ -148,28 +176,17 @@ export function ArrangeArtboards(context) {
   // UI.message('Artboards arranged')
 }
 
-export function Resize(context){
-  // console.log("Resize")
-  // console.log(context)
-  // console.log(context.actionContext)
-  // "Normal" — User selected the Artboard tool to add an Artboard 🤔
-  if (context.actionContext.name == "NormalResize" || context.actionContext.name == "NormalMultipleResize" || context.action == "ResizeArtboardToFit.finish") {
-    if (anArtboardIsSelected(context)) {
-      ArrangeArtboards(context)
-    }
-  }
-  if (context.actionContext.name == "InsertArtboard" && config.arrangeOnAdd) {
-    ArrangeArtboards(context)
-  }
-}
-
 export function ResizeArtboardToFit(context){
-  // console.log("ResizeArtboardToFit")
-  Resize(context)
+  if (sketch.version.sketch < 59) {
+    // console.log("ResizeArtboardToFit")
+    Resize(context)
+  }
 }
 
 export function InsertArtboard(context){
-  // console.log('InsertArtboard');
+  if (sketch.version.sketch < 59) {
+    // console.log('InsertArtboard');
+  }
 }
 
 function snapValueToGrid(value, grid) {
@@ -184,4 +201,10 @@ function snapValueToGrid(value, grid) {
 
 function shouldArrangeArtboard(artboard){
   return !artboard.name.startsWith(config.excludePattern)
+}
+
+function anArtboardIsSelected(context){
+  // console.log("anArtboardIsSelected")
+  const selectedLayers = sketch.getSelectedDocument().selectedLayers.layers
+  return selectedLayers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).length > 0
 }

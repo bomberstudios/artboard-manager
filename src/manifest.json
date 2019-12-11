@@ -9,14 +9,13 @@
       "identifier": "artboardmanager",
       "script": "./artboard-manager.js",
       "handlers": {
-        "actions": {
-          "ArtboardChanged.finish": "ArtboardChanged",
-          "LayersMoved.finish": "LayersMoved",
-          "Duplicate.finish": "Duplicate",
-          "HandlerLostFocus": "Resize",
-          "ResizeArtboardToFit": "ResizeArtboardToFit",
-          "InsertArtboard.finish": "InsertArtboard"
-        }
+        "ArtboardChanged.finish": "ArtboardChanged",
+        "LayersMoved.finish": "LayersMoved",
+        "Duplicate.finish": "Duplicate",
+        "HandlerLostFocus": "Resize",
+        "ResizeArtboardToFit": "ResizeArtboardToFit",
+        "InsertArtboard.finish": "InsertArtboard",
+        "onDocumentChanged": "onDocumentChanged"
       }
     },
     {
