@@ -15,7 +15,6 @@
         "Duplicate.finish": "Duplicate",
         "HandlerLostFocus": "Resize",
         "ResizeArtboardToFit": "ResizeArtboardToFit",
-        "InsertArtboard.finish": "InsertArtboard",
         "onDocumentChanged": "onDocumentChanged"
       }
     },

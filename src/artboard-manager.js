@@ -94,17 +94,20 @@ export function InsertArtboard(context){
   }
 }
 
-export function ToggleAutoMode(){
+export function ToggleAutoMode(context){
   let autoMode = Settings.settingForKey("autoMode")
   Settings.setSettingForKey("autoMode", !autoMode)
+  autoMode = Settings.settingForKey("autoMode")
   checkMarkMenu()
-  UI.message(`Artboard Manager: Auto Mode ${Settings.settingForKey("autoMode") ? "enabled" : "disabled"}`)
+  UI.message(`Artboard Manager: Auto Mode ${autoMode ? "enabled" : "disabled"}`)
+  if (autoMode) {
+    // console.log('Auto Mode is enabled, so lets arrange the Artboards')
+    ArrangeArtboards(context)
+  }
 }
 
 export function ArrangeArtboards(context) {
-  if (!config.autoMode) {
-    return
-  }
+  if (Settings.settingForKey("autoMode") == false) { return }
   const doc = sketch.getSelectedDocument()
   const page = doc.selectedPage
   const symbolsPage = doc._object.documentData().symbolsPage()
@@ -198,7 +201,7 @@ export function ArrangeArtboards(context) {
 
   // Restore original selection
   originalSelection.forEach(artboard => artboard.selected = true)
-  console.log('Artboards arranged')
+  // console.log('Artboards arranged')
 }
 
 function snapValueToGrid(value, grid) {

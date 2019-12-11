@@ -32,7 +32,7 @@ export function ArtboardSettings(context) {
   const options = {
     identifier: "artboardManagerSettings",
     width: 350,
-    height: 306,
+    height: 280,
     show: false,
     resizable: false,
     title: "Artboard Manager — Settings",
