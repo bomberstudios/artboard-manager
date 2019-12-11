@@ -43,7 +43,7 @@
     ]
   },
   "dependencies": {
-    "sketch-module-web-view": "^3.3.0"
+    "sketch-module-web-view": "^3.4.1"
   },
   "resources": [
     "resources/**/*.js"
