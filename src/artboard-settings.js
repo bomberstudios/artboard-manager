@@ -6,7 +6,6 @@ const UI = sketch.UI
 export const settingsKeys = {
   GRIDHORIZONTALSPACE: "gridHorizontalSpace",
   GRIDVERTICALSPACE: "gridVerticalSpace",
-  ARRANGEONADD: "arrangeOnAdd",
   RENAMEARTBOARDS: "renameArtboards",
   ARTBOARDBASENAMES: "artboardBasenames",
   MINIMUMINTEGERDIGITS: "minimumIntegerDigits",
@@ -102,7 +101,6 @@ export function getDefaultSettings() {
     obj[settingsKeys.RENAMEARTBOARDS] = false
     obj[settingsKeys.GRIDVERTICALSPACE] = 100
     obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
-    obj[settingsKeys.ARRANGEONADD] = true
     obj[settingsKeys.ARRANGESYMBOLS] = true
     obj[settingsKeys.ARRANGESYMBOLSPAGE] = false
     obj[settingsKeys.EXCLUDEPATTERN] = "--"
