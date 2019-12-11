@@ -7,7 +7,6 @@ let allInputs = []
   "gridHorizontalSpace",
   "gridVerticalSpace",
   "renameArtboards",
-  "arrangeOnAdd",
   "arrangeSymbols",
   "arrangeSymbolsPage",
   "excludePattern"
