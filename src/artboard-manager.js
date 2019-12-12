@@ -75,7 +75,7 @@ export function Resize(context){
         ArrangeArtboards(context)
       }
     }
-    if (context.actionContext.name == "InsertArtboard" && config.arrangeOnAdd) {
+    if (context.actionContext.name == "InsertArtboard") {
       ArrangeArtboards(context)
     }
   }
@@ -123,7 +123,7 @@ export function ArrangeArtboards(context) {
   }
 
   const originalSelection = doc.selectedLayers
-  const artboards = doc.selectedPage.layers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).filter(shouldArrangeArtboard)
+  const artboards = page.layers.filter(layer => (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols))).filter(shouldArrangeArtboard)
 
   // This will be the starting point for our Artboard Grid
   const layoutX = artboards.reduce((initial, artboard) => {
@@ -171,9 +171,10 @@ export function ArrangeArtboards(context) {
   }, [])
 
   // Set X position for all Artboards on each row
-  const artboardRowValues = [...new Set(artboardRows)]//.sort()
+  const artboardRowValues = [...new Set(artboardRows)]
   var artboardY = layoutY
   var currentRow = 0
+
   artboardRowValues.forEach(rowValue => {
     var tallestArtboard = 0
     var artboardX = layoutX
@@ -182,15 +183,13 @@ export function ArrangeArtboards(context) {
       var currentColumn = index + 1
       artboard.frame.x = artboardX
       artboard.frame.y = artboardY
-      artboardX += artboard.frame.width + config.gridHorizontalSpace
-      if (artboard.frame.height > tallestArtboard) {
-        tallestArtboard = artboard.frame.height
-      }
+      artboardX += artboard.frame.width + Number(config.gridHorizontalSpace)
+      tallestArtboard = Math.max(tallestArtboard, artboard.frame.height)
       if (config.renameArtboards) {
-        artboard.name = config.artboardBasenames[currentRow] + currentColumn.toLocaleString('en-US', {minimumIntegerDigits: config.minimumIntegerDigits, useGrouping:false})
+        artboard.name = config.artboardBasenames[currentRow] + currentColumn.toLocaleString('en-US', {minimumIntegerDigits: Number(config.minimumIntegerDigits), useGrouping:false})
       }
     })
-    artboardY += tallestArtboard + config.gridVerticalSpace
+    artboardY += tallestArtboard + Number(config.gridVerticalSpace)
     currentRow++
   })
 
