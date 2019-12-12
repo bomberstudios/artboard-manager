@@ -20,7 +20,7 @@ export function onDocumentChanged(context){
   let arrangeArtboards = false
   context.actionContext.forEach(change => {
     let layer = sketch.fromNative(change.object())
-    if (layer.type == 'Artboard') {
+    if (layer.type == 'Artboard' || (layer.type == 'SymbolMaster' && config.arrangeSymbols)) {
       arrangeArtboards = true
     }
   })
@@ -108,12 +108,14 @@ export function ToggleAutoMode(context){
 
 export function ArrangeArtboards(context) {
   if (Settings.settingForKey("autoMode") == false) { return }
+
   const doc = sketch.getSelectedDocument()
   const page = doc.selectedPage
   const symbolsPage = doc._object.documentData().symbolsPage()
 
   var currentPage = sketch.getSelectedDocument().selectedPage
   var excludePage = currentPage.name.startsWith(config.excludePattern)
+
   // Don't arrange Artboards if we’re on the Symbols page and the setting
   // is disabled
   if (page._object == symbolsPage && config.arrangeSymbolsPage == false || excludePage == true) {
