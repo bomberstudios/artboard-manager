@@ -33,7 +33,7 @@
       "identifier": "artboardmanager.toggle"
     },
     {
-      "name": "Settings",
+      "name": "Settings…",
       "script": "./artboard-settings.js",
       "handler": "ArtboardSettings",
       "identifier": "artboardmanager.settings"
