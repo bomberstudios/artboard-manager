@@ -4,6 +4,9 @@ This plugin automatically arranges the position of all Artboards in your Sketch 
 
 ![](https://user-images.githubusercontent.com/3832/28533105-3a1586ca-709c-11e7-8544-87d2bb0ad4f1.gif)
 
+<a href="https://www.paypal.me/bomberstudios/5">
+<img width="160" height="41" src="https://raw.githubusercontent.com/DWilliames/PDF-export-sketch-plugin/master/images/paypal-badge.png">
+</a>
 
 ## Installation
 
