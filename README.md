@@ -1,5 +1,7 @@
 # Sketch Artboard Manager
 
+![](https://img.shields.io/github/downloads/bomberstudios/artboard-manager/total?style=for-the-badge)
+
 This plugin automatically arranges the position of all Artboards in your Sketch document, to snap them to rows & columns.
 
 ![](https://user-images.githubusercontent.com/3832/28533105-3a1586ca-709c-11e7-8544-87d2bb0ad4f1.gif)
