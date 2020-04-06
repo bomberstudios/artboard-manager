@@ -10,9 +10,11 @@ This plugin automatically arranges the position of all Artboards in your Sketch 
 <img width="160" height="41" src="https://raw.githubusercontent.com/DWilliames/PDF-export-sketch-plugin/master/images/paypal-badge.png">
 </a>
 
+
 ## Installation
 
 - [Download the latest release](https://github.com/bomberstudios/artboard-manager/releases/latest/download/artboard-manager.sketchplugin.zip), unzip and double click on the .sketchplugin file.
+
 
 ## Usage
 
