@@ -1,74 +1,102 @@
-const BrowserWindow = require("sketch-module-web-view")
+const BrowserWindow = require('sketch-module-web-view')
 const sketch = require('sketch')
 const Settings = sketch.Settings
 const UI = sketch.UI
 
 export const settingsKeys = {
-  GRIDHORIZONTALSPACE: "gridHorizontalSpace",
-  GRIDVERTICALSPACE: "gridVerticalSpace",
-  RENAMEARTBOARDS: "renameArtboards",
-  ARTBOARDBASENAMES: "artboardBasenames",
-  MINIMUMINTEGERDIGITS: "minimumIntegerDigits",
-  ARRANGESYMBOLS: "arrangeSymbols",
-  ARRANGESYMBOLSPAGE: "arrangeSymbolsPage",
-  EXCLUDEPATTERN: "excludePattern",
-  AUTOMODE: "autoMode"
+  GRIDHORIZONTALSPACE: 'gridHorizontalSpace',
+  GRIDVERTICALSPACE: 'gridVerticalSpace',
+  RENAMEARTBOARDS: 'renameArtboards',
+  ARTBOARDBASENAMES: 'artboardBasenames',
+  MINIMUMINTEGERDIGITS: 'minimumIntegerDigits',
+  ARRANGESYMBOLS: 'arrangeSymbols',
+  ARRANGESYMBOLSPAGE: 'arrangeSymbolsPage',
+  EXCLUDEPATTERN: 'excludePattern',
+  AUTOMODE: 'autoMode',
 }
 
 const defaultSettings = {
   gridHorizontalSpace: 50,
   gridVerticalSpace: 100,
   renameArtboards: false,
-  artboardBasenames: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+  artboardBasenames: [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ],
   minimumIntegerDigits: 2,
   arrangeSymbols: true,
   arrangeSymbolsPage: false,
   excludePattern: '--',
-  autoMode: true
+  autoMode: true,
 }
 
 export function ArtboardSettings(context) {
   const options = {
-    identifier: "artboardManagerSettings",
+    identifier: 'artboardManagerSettings',
     width: 350,
     height: 280,
     show: false,
     resizable: false,
-    title: "Artboard Manager — Settings",
+    title: 'Artboard Manager — Settings',
     minimizable: false,
     maximizable: false,
     backgroundColor: '#ececec',
-    hidesOnDeactivate: false
+    hidesOnDeactivate: false,
   }
 
   var browserWindow = new BrowserWindow(options)
 
   // only show the window when the page has loaded
-  browserWindow.once("ready-to-show", () => {
+  browserWindow.once('ready-to-show', () => {
     browserWindow.show()
   })
 
   const webContents = browserWindow.webContents
 
   // Get Settings
-  webContents.on("did-start-loading", () => {
+  webContents.on('did-start-loading', () => {
     let defaultSettings = getDefaultSettings()
-    webContents.executeJavaScript(`window.settings=${JSON.stringify(defaultSettings)}; populateSettings()`)
+    webContents.executeJavaScript(
+      `window.settings=${JSON.stringify(defaultSettings)}; populateSettings()`
+    )
   })
 
   // add a handler for a call from web content's javascript
-  webContents.on("updateSettings", d => {
+  webContents.on('updateSettings', d => {
     // console.log('Updating settings')
     setSettings(d)
     browserWindow.close()
   })
 
-  browserWindow.on("closed", () => {
-    // TODO: rearrange Artboards
+  browserWindow.on('closed', () => {
     browserWindow = null
   })
 
-  browserWindow.loadURL(require("../resources/settings.html"))
+  browserWindow.loadURL(require('../resources/settings.html'))
 }
 
 function getSettings() {
