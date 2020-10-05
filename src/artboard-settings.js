@@ -3,18 +3,6 @@ const sketch = require('sketch')
 const Settings = sketch.Settings
 const UI = sketch.UI
 
-export const settingsKeys = [
-  'gridHorizontalSpace',
-  'gridVerticalSpace',
-  'renameArtboards',
-  'artboardBasenames',
-  'minimumIntegerDigits',
-  'arrangeSymbols',
-  'arrangeSymbolsPage',
-  'excludePattern',
-  'autoMode',
-]
-
 const defaultSettings = {
   gridHorizontalSpace: 50,
   gridVerticalSpace: 100,
@@ -101,7 +89,7 @@ export function ArtboardSettings(context) {
 
 export function getSettings() {
   let obj = {}
-  settingsKeys.forEach(key => {
+  Object.keys(defaultSettings).forEach(key => {
     obj[key] = Settings.settingForKey(key)
     if (obj[key] === undefined) {
       // This must be a new setting, so let's use the defaults
