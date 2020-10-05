@@ -6,6 +6,9 @@
     <description>Artboard Manager appcast</description>
     <language>en</language>
     <item>
+      <enclosure url="https://github.com/bomberstudios/artboard-manager/releases/download/v2.2.0/artboard-manager.sketchplugin.zip" sparkle:version="2.2.0"/>
+    </item>
+    <item>
       <enclosure url="https://github.com/bomberstudios/artboard-manager/releases/download/v2.1.2/artboard-manager.sketchplugin.zip" sparkle:version="2.1.2"/>
     </item>
     <item>
