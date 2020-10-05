@@ -22,7 +22,7 @@
       "name": "Arrange Artboards",
       "script": "./artboard-manager.js",
       "shortcut": "ctrl alt cmd a",
-      "handler": "ArrangeArtboards",
+      "handler": "manualArrangeArtboards",
       "identifier": "artboardmanager.keyboard"
     },
     {

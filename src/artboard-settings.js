@@ -3,17 +3,17 @@ const sketch = require('sketch')
 const Settings = sketch.Settings
 const UI = sketch.UI
 
-export const settingsKeys = {
-  GRIDHORIZONTALSPACE: 'gridHorizontalSpace',
-  GRIDVERTICALSPACE: 'gridVerticalSpace',
-  RENAMEARTBOARDS: 'renameArtboards',
-  ARTBOARDBASENAMES: 'artboardBasenames',
-  MINIMUMINTEGERDIGITS: 'minimumIntegerDigits',
-  ARRANGESYMBOLS: 'arrangeSymbols',
-  ARRANGESYMBOLSPAGE: 'arrangeSymbolsPage',
-  EXCLUDEPATTERN: 'excludePattern',
-  AUTOMODE: 'autoMode',
-}
+export const settingsKeys = [
+  'gridHorizontalSpace',
+  'gridVerticalSpace',
+  'renameArtboards',
+  'artboardBasenames',
+  'minimumIntegerDigits',
+  'arrangeSymbols',
+  'arrangeSymbolsPage',
+  'excludePattern',
+  'autoMode',
+]
 
 const defaultSettings = {
   gridHorizontalSpace: 50,
@@ -79,7 +79,7 @@ export function ArtboardSettings(context) {
 
   // Get Settings
   webContents.on('did-start-loading', () => {
-    let defaultSettings = getDefaultSettings()
+    let defaultSettings = getSettings()
     webContents.executeJavaScript(
       `window.settings=${JSON.stringify(defaultSettings)}; populateSettings()`
     )
@@ -99,44 +99,20 @@ export function ArtboardSettings(context) {
   browserWindow.loadURL(require('../resources/settings.html'))
 }
 
-function getSettings() {
+export function getSettings() {
   let obj = {}
-  let isUndefined = true
-
-  Object.keys(settingsKeys).forEach(key => {
-    obj[settingsKeys[key]] = Settings.settingForKey(settingsKeys[key])
-    isUndefined = obj[settingsKeys[key]] === undefined
+  settingsKeys.forEach(key => {
+    obj[key] = Settings.settingForKey(key)
+    if (obj[key] === undefined) {
+      // This must be a new setting, so let's use the defaults
+      obj[key] = defaultSettings[key]
+    }
   })
-
-  return { data: obj, isUndefined: isUndefined }
+  return obj
 }
 
-function setSettings(data) {
+export function setSettings(data) {
   Object.keys(data).forEach(key => {
     Settings.setSettingForKey(key, data[key])
   })
-}
-
-export function getDefaultSettings() {
-  const currentSettings = getSettings()
-
-  // TODO: we need to support newly introduced settings
-  // For that, we need to check for each setting and see if it's undefined
-  /* prettier-ignore */
-  if (currentSettings.isUndefined) {
-    let obj = {}
-    obj[settingsKeys.RENAMEARTBOARDS] = false
-    obj[settingsKeys.GRIDVERTICALSPACE] = 100
-    obj[settingsKeys.GRIDHORIZONTALSPACE] = 50
-    obj[settingsKeys.ARRANGESYMBOLS] = true
-    obj[settingsKeys.ARRANGESYMBOLSPAGE] = false
-    obj[settingsKeys.EXCLUDEPATTERN] = "--"
-    obj[settingsKeys.ARTBOARDBASENAMES] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    obj[settingsKeys.MINIMUMINTEGERDIGITS] = 2
-    obj[settingsKeys.AUTOMODE] = true
-    setSettings(obj)
-    return obj
-  } else {
-    return currentSettings.data
-  }
 }
