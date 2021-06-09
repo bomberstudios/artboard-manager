@@ -26,11 +26,11 @@
     "sketch": ">=3.0"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.7.4",
-    "@skpm/extract-loader": "^2.0.2",
-    "css-loader": "^3.3.0",
+    "@skpm/builder": "^0.7.11",
+    "@skpm/extract-loader": "^2.0.3",
+    "css-loader": "^5.2.6",
     "html-loader": "^0.5.5",
-    "serialize-javascript": ">=3.1.0"
+    "serialize-javascript": "^5.0.1"
   },
   "skpm": {
     "name": "Artboard Manager",
@@ -43,7 +43,7 @@
     ]
   },
   "dependencies": {
-    "sketch-module-web-view": "^3.4.1"
+    "sketch-module-web-view": "^3.5.1"
   },
   "resources": [
     "resources/**/*.js"
