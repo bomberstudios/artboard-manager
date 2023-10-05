@@ -28,7 +28,7 @@
   "devDependencies": {
     "@skpm/builder": "^0.7.4",
     "@skpm/extract-loader": "^2.0.2",
-    "css-loader": "^3.3.0",
+    "css-loader": "^6.8.1",
     "html-loader": "^0.5.5",
     "serialize-javascript": ">=3.1.0"
   },
